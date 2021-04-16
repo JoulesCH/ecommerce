@@ -25,6 +25,8 @@ class Product(models.Model):
         return self.colors.split(',')
     def get_categories(self):
         return self.categories.split(',')
+    def get_cart_path(self):
+        return '/add/' + str(self.ide)
 
     def __str__(self):
         return self.name

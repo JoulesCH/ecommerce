@@ -8,4 +8,11 @@ def home(request):
         'products': products,
         'p_categories': principal_categories,
     }
+    try: 
+        user = request.session['username']
+    except:
+        pass
+    else:
+        context['username'] = user
+        
     return render(request, 'home/home.html', context)

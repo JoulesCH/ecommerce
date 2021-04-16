@@ -1,0 +1,61 @@
+{%extends "base.html"%}
+{%block head%}
+  <title>Login</title>
+{%endblock%}
+{%block content%}
+<!-- Login Form -->
+<div style = "padding-top:50px; margin-bottom:50px;">
+    <div class="container">
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+          <div class="card shadow">
+            <div class="card-title text-center border-bottom">
+              <h2 class="p-3">Identifícate</h2>
+            </div>
+            <div class="card-body">
+                {%if error%}
+                    <p class = "alert alert-danger">{{error}}</p>
+                {%endif%}
+              <form method = "POST" url = "/login" >
+                {%csrf_token%}
+                <div class="mb-4">
+                  <label for="username" class="form-label">Usuario/Email</label>
+                  <input type="text" class="form-control" id="username"  name = "username"/>
+                </div>
+                <div class="mb-4">
+                  <label for="password" class="form-label">Contraseña</label>
+                  <input type="password" class="form-control" id="password" name = "password"/>
+                </div>
+                <div class="mb-4">
+                  <!-- <input type="checkbox" class="form-check-input" id="remember" /> -->
+                  <!-- <label for="remember" class="form-label">Recuérdame</label> -->        
+                <a href="/forgot">Olvidé mi contraseña</a>               
+                </div>
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-outline-success">Login</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="card shadow">
+              <div class="card-title text-center border-bottom">
+                <h6 class="p-3">¿No tienes cuenta?</h6>
+              </div>
+              <div class="card-body">
+                <form class="d-grid">
+                    <button type="submit" class="btn btn-outline-primary">Regístrate</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
