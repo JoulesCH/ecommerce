@@ -1,0 +1,58 @@
+{%extends "base.html"%}
+{%load static%}
+{%block head%}
+  <title>Home</title>
+{%endblock%}
+{%block content%}
+<div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    
+    <div class="carousel-inner">
+      
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="{%static '/images/carousel_1.png'%}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block" style = "padding-bottom: 9.25rem;">
+          <h5>COMPRA AHORA Y PAGA DESPUÉS | ENVÍO GRATUITO | CONSIGUE UN 15% DE DESCUENTO</h5>
+          <p>Busca en más de 300 prendas: </p>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-outline-secondary" type="submit" style = "color:aliceblue;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </button>
+          </form> 
+        </div>
+      </div>
+
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="https://www.hola.com/imagenes/estar-bien/20180312121453/ropa-contamina-medio-ambiente/0-548-821/ropa-medioambiente-t.jpg?filter=w600&filter=ds75" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Second slide label</h5>
+          <p>Some representative placeholder content for the second slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="https://www.hola.com/imagenes/estar-bien/20180312121453/ropa-contamina-medio-ambiente/0-548-821/ropa-medioambiente-t.jpg?filter=w600&filter=ds75" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Third slide label</h5>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  {%include "home/products.html"%}
+{%endblock%}
