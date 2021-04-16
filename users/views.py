@@ -27,4 +27,6 @@ def logout_view(request):
     #del request.session['username']
     return redirect('login')
 
+def suscribe(request):
+    return render(request, 'users/suscribe.html')
     

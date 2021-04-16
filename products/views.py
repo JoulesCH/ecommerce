@@ -20,9 +20,8 @@ def add(request, ide):
                 request.session[str(context['product'].ide)] += 1
             else:
                 request.session[str(context['product'].ide)] = 1
-        
+
 
     print('*'*10,request.session['cart'],  request.session.keys())
 
     return render(request, 'products/add.html', context)
-    

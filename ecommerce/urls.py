@@ -26,5 +26,6 @@ urlpatterns = [
     path('home/', home_view.home, name = 'home'),
     path('login/', user_views.login_view, name ='login'),
     path('logout/', user_views.logout_view, name ='logout'),
-    path('add/<int:ide>', product_views.add, name ='add_cart' )
+    path('add/<int:ide>', product_views.add, name ='add_cart' ),
+    path('suscribe/',  user_views.suscribe, name = 'suscribe')
 ]
