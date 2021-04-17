@@ -16,11 +16,11 @@ def add(request, ide):
                 request.session['cart'] += 1
             else:
                 request.session['cart'] = 1
-            if str(context['product'].ide) in request.session:
-                request.session[str(context['product'].ide)] += 1
+            if '*!'+str(context['product'].ide) in request.session:
+                request.session['*!'+str(context['product'].ide)] += 1
             else:
-                request.session[str(context['product'].ide)] = 1
-
+                request.session['*!'+str(context['product'].ide)] = 1
+ 
 
     print('*'*10,request.session['cart'],  request.session.keys())
 

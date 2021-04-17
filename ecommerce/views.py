@@ -7,6 +7,7 @@ def home(request):
     context = {
         'products': products,
         'p_categories': principal_categories,
+        'inicio':'active'
     }
     try: 
         user = request.session['username']

@@ -20,13 +20,16 @@ from ecommerce import views as home_view
 
 from products import views as product_views
 from users import views as user_views
+from shoppingcarts import views as cart_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', home_view.home, name = 'home'),
-    path('login/', user_views.login_view, name ='login'),
+    path('user/login/', user_views.login_view, name ='login'),
     path('logout/', user_views.logout_view, name ='logout'),
     path('add/<int:ide>', product_views.add, name ='add_cart' ),
-    path('suscribe/',  user_views.suscribe, name = 'suscribe'),
-    path('pruebas/', home_view.prueba, name = 'prueba')
+    path('user/signup/',  user_views.signup, name = 'signup'),
+
+    path('pruebas/', home_view.prueba, name = 'prueba'),
+    path('cart/', cart_views.cart, name = 'cart')
 ]
