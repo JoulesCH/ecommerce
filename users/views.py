@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
+from shoppingcarts.models import Cart
 # Create your views here.
 def login_view(request):
     if request.method == 'POST':
@@ -36,13 +37,15 @@ def signup(request):
         if password != password_conf:
             return render(request, 'users/signup.html', {'error': 'Las contraseñas no coinciden'})
         try: 
-            user = User.objects.create_user(username = username, password=password, id_carrito = '123')
-        except:
-            return render(request, 'users/signup.html', {'error': 'Correo ya registrado'})
+            user = User.objects.create_user(username = username, password=password)
+        except Exception as e:
+            return render(request, 'users/signup.html', {'error': str(e)})
         user.first_name = request.POST['name']
         user.save()
+        cart = Cart(user = user)
+        cart.save()
         request.session['username'] = username
-        return redirect('home')
+        return redirect('login')
     try:
         user = request.session['username']
     except:
