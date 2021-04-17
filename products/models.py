@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Product(models.Model):
-    ide = models.IntegerField(primary_key = True)
+    ide = models.AutoField(primary_key = True)
     name = models.CharField(max_length = 50, null = False )
     descripcion = models.CharField(max_length = 200, null = False )
     price = models.FloatField(null = False)

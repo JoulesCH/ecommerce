@@ -5,7 +5,7 @@
 
 {%block content%}
     <div style = "padding:30px; padding-top:80px;">
-        <h2 class= "display-4"> Carrito de compras</h2>
+        <h2 class= "display-4"> Carrito de compras {{request.user.email}}</h2>
         {%if error%}
             <p class = "alert alert-danger">{{error}}</p>
         {%else%}
@@ -55,7 +55,7 @@
         <div class="container">
             <div class="row justify-content-end">
                 <div class="col-4">
-                    <h3 class= "display-6" >Total $MXN{{total}}</h3> 
+                    <h3 class= "display-6" >Subtotal $MXN{{total}}</h3> 
                 </div>
                 <div class="col-4">
                     <a type="button" class="btn btn-outline-success">Proceder al pago</a>

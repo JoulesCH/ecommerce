@@ -36,7 +36,7 @@ def signup(request):
         if password != password_conf:
             return render(request, 'users/signup.html', {'error': 'Las contraseñas no coinciden'})
         try: 
-            user = User.objects.create_user(username = username, password=password)
+            user = User.objects.create_user(username = username, password=password, id_carrito = '123')
         except:
             return render(request, 'users/signup.html', {'error': 'Correo ya registrado'})
         user.first_name = request.POST['name']
