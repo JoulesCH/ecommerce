@@ -16,3 +16,6 @@ def home(request):
         context['username'] = user
         
     return render(request, 'home/home.html', context)
+
+def prueba(request):
+    return render(request, 'pruebas.html')

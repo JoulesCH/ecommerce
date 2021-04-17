@@ -27,5 +27,6 @@ urlpatterns = [
     path('login/', user_views.login_view, name ='login'),
     path('logout/', user_views.logout_view, name ='logout'),
     path('add/<int:ide>', product_views.add, name ='add_cart' ),
-    path('suscribe/',  user_views.suscribe, name = 'suscribe')
+    path('suscribe/',  user_views.suscribe, name = 'suscribe'),
+    path('pruebas/', home_view.prueba, name = 'prueba')
 ]
