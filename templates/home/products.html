@@ -2,13 +2,13 @@
 
 <div style = "width: 100%;">
 {%for principal_category in p_categories%}
-    <div class="container" style = "width:90%;">
-        <div class="row justify-content-md-center">
+    <div class="container" style = "width:100%;">
+        <div class="row">
             <h2 class = "display-4" style = "text-align:center;">{{principal_category | title}}</h2>
             {%for product in products%}
                 {%if principal_category in product.categories%}
-                    <div class="col-md-auto" style = "margin:5px; margin-top:20px;">
-                        <div class="card" style="width: 18rem; margin:0px;">
+                    <div class="col-lg-3 " style = "padding:10px; margin-top:20px;">
+                        <div class="card">
                             <a href="" style = "text-decoration: none; color: black;">
                                 <img src="{{product.image1.url}}" class="card-img-top rounded" alt="..." style ="width:100%; height:350px;">
                                 <div class="card-body">

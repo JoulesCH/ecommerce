@@ -3,3 +3,5 @@ db.sqlite3
 *.py[cod]
 *$py.class
 .DS_Store
+static/images/
+venv/
