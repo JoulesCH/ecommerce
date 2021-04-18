@@ -1,0 +1,16 @@
+{%extends "base.html"%}
+{%block head%}
+  <title>Pay</title>
+{%endblock%}
+
+{%block content%}
+    <div style = "padding:30px; padding-top:80px;">
+        {%if error%}
+            <p class="alert alert-danger">{{error}}</p>
+        {%else%}
+        
+            <h2 class= "display-4">$MXN{{request.session.subtotal_}}</h2>
+
+        {%endif%}
+    </div>
+{%endblock%}

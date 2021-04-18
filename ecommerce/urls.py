@@ -31,5 +31,7 @@ urlpatterns = [
     path('user/signup/',  user_views.signup, name = 'signup'),
 
     path('pruebas/', home_view.prueba, name = 'prueba'),
-    path('cart/', cart_views.cart, name = 'cart')
+    path('cart/', cart_views.cart, name = 'cart'),
+    path('remove/<int:ide>', product_views.remove, name = 'remove_cart'),
+    path('payment/', cart_views.payment, name = 'payment')
 ]

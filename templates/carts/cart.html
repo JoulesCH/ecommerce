@@ -1,6 +1,6 @@
 {%extends "base.html"%}
 {%block head%}
-  <title>Add to cart</title>
+  <title>Cart</title>
 {%endblock%}
 
 {%block content%}
@@ -9,8 +9,11 @@
         {%if error%}
             <p class = "alert alert-danger">{{error}}</p>
         {%else%}
+        <form action = "{%url "payment"%}" method="POST">
+            {%csrf_token%}
             <div class="container" style = "width:90%;">
                 <div class="row">
+                
                     {%for product in cart%}
                             <div  class="col-lg-3 " style = "padding:10px; margin-top:20px;">
                                 <div class="card">
@@ -19,30 +22,41 @@
                                     </a>
                                         <div class="card-body">
                                             <small class="text-muted">{{product.name}}</small>
-                                            <h5 class="card-title">$MXN{{product.price}}</h5>
+
                                             <div class = "container" style = "padding:10px;">
                                                 <div class = "row">
                                                     <div class = "col align-self-start">
-                                                        <select class="form-select" aria-label="Default select example">
-                                                            {%for color in product.get_colors%}
-                                                                <option value="{{size}}">
-                                                                    {{color | title}}
-                                                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 120 120">
-                                                                        <circle cx="60" cy="60" r="50" fill="{{color}}" />
-                                                                    </svg>
-                                                                </option>
-                                                            {%endfor%}
-                                                        </select>
+                                                        <h5 class="card-title">$MXN{{product.price}}</h5>
                                                     </div>
                                                     <div class = "col align-self-end">
-                                                        <select class="form-select" aria-label="Default select example">
-                                                            {%for size in product.get_sizes%}
-                                                                    <option value="{{size}}">{{size | title}}</option>
-                                                            {%endfor%}
-                                                        </select>
+                                                        <a type="button" class="btn-close text-reset"aria-label="Close" style="display:inline" href = "{{product.get_remove_path}}"></a>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                                <div class = "container" style = "padding:10px;">
+                                                    <div class = "row">
+                                                        <div class = "col align-self-start">
+                                                            <select class="form-select" aria-label="Default select example" name ="!*-col-{{product.ide}}-{{forloop.counter0}}">
+                                                                {%for color in product.get_colors%}
+                                                                    <option value="{{size}}">
+                                                                        {{color | title}}
+                                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 120 120">
+                                                                            <circle cx="60" cy="60" r="50" fill="{{color}}" />
+                                                                        </svg>
+                                                                    </option>
+                                                                {%endfor%}
+                                                            </select>
+                                                        </div>
+                                                        <div class = "col align-self-end">
+                                                            <select class="form-select" aria-label="Default select example" name ="!*-size-{{product.ide}}-{{forloop.counter0}}">
+                                                                {%for size in product.get_sizes%}
+                                                                        <option value="{{size}}">{{size | title}}</option>
+                                                                {%endfor%}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
                                     
                                 </div>
@@ -50,18 +64,20 @@
                             </div>
     
                     {%endfor%}
+               
                 </div>
             </div>
-        <div class="container">
-            <div class="row justify-content-end">
-                <div class="col-4">
-                    <h3 class= "display-6" >Subtotal $MXN{{total}}</h3> 
-                </div>
-                <div class="col-4">
-                    <a type="button" class="btn btn-outline-success">Proceder al pago</a>
+            <div class="container">
+                <div class="row justify-content-end">
+                    <div class="col-4">
+                        <h3 class= "display-6" >Subtotal $MXN{{request.session.subtotal_}}</h3> 
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-outline-success" type = "submit">Proceder al pago</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
         {%endif%}
     </div>
 {%endblock%}
