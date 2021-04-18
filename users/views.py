@@ -15,7 +15,11 @@ def login_view(request):
                 request.session['username'] = username
                 return redirect('home')
             else:
-                return render(request, 'users/login.html', {'error': 'Datos inválidos'})
+                next_url = request.GET.get('next')
+                if next_url:
+                    return redirect(next_url)
+                else:
+                    return render(request, 'users/login.html', {'error': 'Datos inválidos'})
     try:
         user = request.session['username']
     except:
@@ -45,6 +49,7 @@ def signup(request):
         cart = Cart(user = user)
         cart.save()
         request.session['username'] = username
+        user = authenticate(request, username = username, password = password)
         return redirect('login')
     try:
         user = request.session['username']

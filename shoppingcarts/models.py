@@ -8,3 +8,4 @@ class Cart(models.Model):
     promo = models.IntegerField( default = 0)
     subtotal = models.FloatField(default = 0)
     estado = models.CharField(max_length = 20, default = 'waiting' )
+    no_productos = models.IntegerField( default = 0)

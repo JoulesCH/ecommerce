@@ -29,7 +29,7 @@ ALLOWED_HOSTS = ['192.168.137.25', '192.168.0.178', '192.168.0.7']
 
 
 # Application definition
-
+LOGIN_URL = '/user/login'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
