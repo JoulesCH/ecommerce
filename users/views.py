@@ -50,6 +50,8 @@ def signup(request):
         cart.save()
         request.session['username'] = username
         user = authenticate(request, username = username, password = password)
+        login(request, user)
+        user = request.session['username']
         return redirect('login')
     try:
         user = request.session['username']

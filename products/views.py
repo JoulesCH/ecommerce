@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from products.models import Product,CartProduct
 from django.contrib.auth.models import User
+from shoppingcarts.models import Cart
 # Create your views here.
 
 def add(request, ide):
@@ -43,12 +44,13 @@ def add(request, ide):
                 context['error'] =  'No hay más productos disponibles'
             else:
                 user = User.objects.get(pk = request.user.pk)
+                cart = Cart.objects.get(user = user)
                 #Sumamos uno a la cuenta de productso
-                user.cart.no_productos +=1
+                cart.no_productos +=1
                 #Modificamos el subtotal
-                user.cart.subtotal+= context['product'].price
+                cart.subtotal+= context['product'].price
                 
-                user.save()
+                cart.save()
                 #Agregamos el producto
                 cart_product = CartProduct(cart = user.cart, product = context['product'])
                 cart_product.save()
@@ -92,12 +94,13 @@ def remove(request, ide):
         else:
             if True:
                 user = User.objects.get(pk = request.user.pk)
+                cart = Cart.objects.get(user = user)
                 #Sumamos uno a la cuenta de productso
-                user.cart.no_productos -=1
+                cart.no_productos -=1
                 #Modificamos el subtotal
-                user.cart.subtotal-= context['product'].price
+                cart.subtotal-= context['product'].price
                 
-                user.save()
+                cart.save()
                 #Agregamos el producto
                 cartproducts = CartProduct.objects.filter(cart = user.cart, product = context['product'])
                 cartproducts[0].delete()
