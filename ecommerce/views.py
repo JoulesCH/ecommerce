@@ -19,4 +19,5 @@ def home(request):
     return render(request, 'home/home.html', context)
 
 def prueba(request):
+    print(request.user.cart.ide)
     return render(request, 'pruebas.html')
