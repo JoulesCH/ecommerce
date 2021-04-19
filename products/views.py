@@ -107,3 +107,19 @@ def remove(request, ide):
             cartproduct.delete()
 
             return redirect('cart')
+
+def select_option(request,ide):
+    if request.method == 'POST':
+        try:
+            cartproduct = CartProduct.objects.get(ide = ide)
+        except:
+            return redirect('cart')
+        else:
+            if 'size' in request.POST.keys():
+                cartproduct.talla = request.POST['size']
+            elif 'color' in request.POST.keys():
+                cartproduct.color = request.POST['color']
+            cartproduct.save()
+        return redirect('cart')
+    else:
+        return redirect('cart')

@@ -33,5 +33,6 @@ urlpatterns = [
     path('pruebas/', home_view.prueba, name = 'prueba'),
     path('cart/', cart_views.cart, name = 'cart'),
     path('remove/<int:ide>', product_views.remove, name = 'remove_cart'),
-    path('payment/', cart_views.payment, name = 'payment')
+    path('payment/', cart_views.payment, name = 'payment'),
+    path('cart/option/<int:ide>', product_views.select_option, name = 'option')
 ]

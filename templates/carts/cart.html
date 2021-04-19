@@ -75,8 +75,8 @@
                 </div> 
             </form>
         {%elif productscart%}
-            <form action = "{%url "payment"%}" method = "POST">
-                {%csrf_token%}
+            <!-- <form action = "{%url "payment"%}" method = "POST"> -->
+                
                 <div class="container">
                     <div class="row justify-content-center"> 
                         <div class="col-lg-8 align-self-center">
@@ -93,28 +93,42 @@
                                                     <div class="container">
                                                         <div class="row justify-content-end">
                                                             <div class="col-sm-4 col-md-3" style = "padding:0px; padding-left:10px;">
-                                                                {%if  productcart.product.stock == 0 %}
-                                                                    <select class="form-select" aria-label=".form-select-lg example" disabled required = "true" name ="!*-size-{{productcart.product.ide}}-{{forloop.counter0}}">
-                                                                {%else%}
-                                                                    <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="!*-size-{{productcart.product.ide}}-{{forloop.counter0}}">
-                                                                {%endif%}
-                                                                        <option selected>Talla</option>
-                                                                    {%for size in productcart.product.get_sizes%}
-                                                                        <option value="{{size}}">{{size}}</option>
-                                                                    {%endfor%}   
-                                                                </select>
+                                                                <form action = "option/{{productcart.ide}}" method = "POST"> 
+                                                                    {%csrf_token%}
+                                                                    {%if  productcart.product.stock == 0 %}
+                                                                        <select class="form-select" onchange="this.form.submit()" aria-label=".form-select-lg example" disabled required = "true" name ="size">
+                                                                    {%else%}
+                                                                        <select class="form-select" onchange="this.form.submit()"  aria-label=".form-select-lg example" required = "true" name ="size">
+                                                                    {%endif%}
+                                                                            <option disabled = "true" selected>Talla</option>
+                                                                        {%for size in productcart.product.get_sizes%}
+                                                                            {%if size == productcart.talla%}
+                                                                                <option value="{{size}}" selected>{{size}}</option>
+                                                                            {%else%}
+                                                                                <option value="{{size}}">{{size}}</option>
+                                                                            {%endif%}
+                                                                        {%endfor%}   
+                                                                    </select>
+                                                                </form>
                                                             </div>
                                                             <div class="col-sm-5 col-md-4" style = "padding:0px; padding-left:10px;" >
-                                                                {%if  productcart.product.stock == 0 %}
-                                                                    <select class="form-select" aria-label=".form-select-lg example" disabled required = "true" name ="!*-col-{{productcart.product.ide}}-{{forloop.counter0}}">
-                                                                {%else%}
-                                                                    <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="!*-col-{{productcart.product.ide}}-{{forloop.counter0}}">
-                                                                {%endif%}
-                                                                        <option selected>Color</option>
-                                                                    {%for color in productcart.product.get_colors%}
-                                                                        <option value="{{size}}">{{color}}</option>
-                                                                    {%endfor%}
-                                                                </select>
+                                                                <form action = "option/{{productcart.ide}}" method = "POST"> 
+                                                                    {%csrf_token%}
+                                                                    {%if  productcart.product.stock == 0 %}
+                                                                        <select class="form-select" onchange="this.form.submit()" aria-label=".form-select-lg example" disabled required = "true" name ="color">
+                                                                    {%else%}
+                                                                        <select class="form-select" onchange="this.form.submit()" aria-label=".form-select-lg example" required = "true" name ="color">
+                                                                    {%endif%}
+                                                                            <option disabled = "true" selected>Color</option>
+                                                                        {%for color in productcart.product.get_colors%}
+                                                                            {%if color == productcart.color%}
+                                                                                <option value="{{color}}" selected>{{color}}</option>
+                                                                            {%else%}
+                                                                                <option value="{{color}}">{{color}}</option>
+                                                                            {%endif%}    
+                                                                        {%endfor%}
+                                                                    </select>
+                                                                </form>
                                                             </div>
                                                         
                                                         </div>
@@ -147,7 +161,7 @@
                         </div>
                     </div>
                 </div> 
-            </form>
+            <!-- </form> -->
         {%endif%}
     </div>
 {%endblock%}
