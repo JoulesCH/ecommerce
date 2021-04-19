@@ -23,10 +23,10 @@
                                             <div class="card-body">
                                                 <figure class="text-end">
                                                     <img src="{{product.image1.url}}" class="rounded float-start" alt="..." style = "width:100px;">
-                                                    <blockquote class="blockquote">
+                                                    <blockquote class="blockquote" style = "margin-bottom:0px;">
                                                     <div class="container">
                                                         <div class="row justify-content-end">
-                                                            <div class="col-2">
+                                                            <div class="col-3">
                                                                 <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="!*-size-{{product.ide}}-{{forloop.counter0}}">
                                                                     <option selected>Talla</option>
                                                                     {%for size in product.get_sizes%}
@@ -34,7 +34,7 @@
                                                                     {%endfor%}   
                                                                 </select>
                                                             </div>
-                                                            <div class="col-2">
+                                                            <div class="col-3">
                                                                 <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="!*-col-{{product.ide}}-{{forloop.counter0}}">
                                                                     <option selected>Color</option>
                                                                     {%for color in product.get_colors%}
@@ -85,24 +85,32 @@
                                 {%for productcart in productscart%}
                                     <div class="card-body">
                                         <div class="card">
-                                            <h5 class="card-header">{{productcart.product.name}} </h5>
+                                            <h5 class="card-header">{{productcart.product.name}}</h5>
                                             <div class="card-body">
                                                 <figure class="text-end">
                                                     <img src="{{productcart.product.image1.url}}" class="rounded float-start" alt="..." style = "width:100px;">
-                                                    <blockquote class="blockquote">
+                                                    <blockquote class="blockquote" style = "margin-bottom:0px;">
                                                     <div class="container">
                                                         <div class="row justify-content-end">
-                                                            <div class="col-2">
-                                                                <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="!*-size-{{productcart.product.ide}}-{{forloop.counter0}}">
-                                                                    <option selected>Talla</option>
+                                                            <div class="col-sm-4 col-md-3" style = "padding:0px; padding-left:10px;">
+                                                                {%if  productcart.product.stock == 0 %}
+                                                                    <select class="form-select" aria-label=".form-select-lg example" disabled required = "true" name ="!*-size-{{productcart.product.ide}}-{{forloop.counter0}}">
+                                                                {%else%}
+                                                                    <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="!*-size-{{productcart.product.ide}}-{{forloop.counter0}}">
+                                                                {%endif%}
+                                                                        <option selected>Talla</option>
                                                                     {%for size in productcart.product.get_sizes%}
                                                                         <option value="{{size}}">{{size}}</option>
                                                                     {%endfor%}   
                                                                 </select>
                                                             </div>
-                                                            <div class="col-2">
-                                                                <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="!*-col-{{productcart.product.ide}}-{{forloop.counter0}}">
-                                                                    <option selected>Color</option>
+                                                            <div class="col-sm-5 col-md-4" style = "padding:0px; padding-left:10px;" >
+                                                                {%if  productcart.product.stock == 0 %}
+                                                                    <select class="form-select" aria-label=".form-select-lg example" disabled required = "true" name ="!*-col-{{productcart.product.ide}}-{{forloop.counter0}}">
+                                                                {%else%}
+                                                                    <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="!*-col-{{productcart.product.ide}}-{{forloop.counter0}}">
+                                                                {%endif%}
+                                                                        <option selected>Color</option>
                                                                     {%for color in productcart.product.get_colors%}
                                                                         <option value="{{size}}">{{color}}</option>
                                                                     {%endfor%}
@@ -125,7 +133,7 @@
                             </div>
         
                         </div>
-                        <div class="col-lg-4" style="padding: 1rem;">
+                        <div class="col-lg-4" style="padding: 1rem; ">
                             <div class="card text-center">
                                 <div class="card-body">
                                 <h5 class="card-title">SUBTOTAL: </h5>

@@ -42,7 +42,11 @@
                 <div class="container">
                     <div class="row justify-content-end">
                         <div class="col-4">
-                            <h3 class= "display-6" >Subtotal $MXN{{request.session.subtotal_}}</h3> 
+                            {%if request.user.cart.subtotal%}
+                                <h3 class="display-6">Subtotal $MXN{{request.user.cart.subtotal}}</h3>
+                            {%else%}
+                                <h3 class= "display-6" >Subtotal $MXN{{request.session.subtotal_}}</h3> 
+                            {%endif%}
                         </div>
                         <div class="col-4">
                             <a type="button" class="btn btn-outline-success" href = "{%url "cart"%}">Ir al carrito</a>
