@@ -87,22 +87,23 @@ def remove(request, ide):
         return redirect('cart')
     else:
         #Si el usuario está loggeado guarda en la base de datos
+        user = User.objects.get(pk = request.user.pk)
+        
+        #Aquitamos el producto
         try:
-            context['product'] =  Product.objects.get(ide = ide)
+            cartproduct = CartProduct.objects.get(ide = ide)
         except:
-            context['error'] =  'No fue posible encontrar el producto especificado'
+            return redirect('cart')
         else:
-            if True:
-                user = User.objects.get(pk = request.user.pk)
-                cart = Cart.objects.get(user = user)
-                #Sumamos uno a la cuenta de productso
-                cart.no_productos -=1
-                #Modificamos el subtotal
-                cart.subtotal-= context['product'].price
-                
-                cart.save()
-                #Agregamos el producto
-                cartproducts = CartProduct.objects.filter(cart = user.cart, product = context['product'])
-                cartproducts[0].delete()
+            product  = Product.objects.get(ide = cartproduct.product.ide)
 
-        return redirect('cart')
+            cart = Cart.objects.get(user = user)
+            #Sumamos uno a la cuenta de productso
+            cart.no_productos -=1
+            #Modificamos el subtotal
+            cart.subtotal-= product.price
+                    
+            cart.save()
+            cartproduct.delete()
+
+            return redirect('cart')

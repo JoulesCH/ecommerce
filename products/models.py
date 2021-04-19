@@ -40,3 +40,6 @@ class CartProduct(models.Model):
     quantity = models.IntegerField(default = 1)
     talla = models.CharField(max_length= 5, default = "Unico")
     color = models.CharField(max_length = 20, default = "Unico") 
+    
+    def get_remove_path(self):
+        return '/remove/' + str(self.ide) 

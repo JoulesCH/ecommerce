@@ -22,7 +22,6 @@ def cart(request):
     else:
         #Si está loggeado 
         #Ver si  hay productos cacheados para agregarlos a la base de datos
-        print(User.objects.get(pk = request.user.pk))
         if 'cart' in request.session:
             cart = []
             user = User.objects.get(pk = request.user.pk)
