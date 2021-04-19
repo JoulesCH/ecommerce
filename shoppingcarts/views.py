@@ -49,9 +49,9 @@ def cart(request):
     
 @login_required
 def payment(request):
-    print(request.POST.keys())
+    #print()
     if request.method == 'POST':
-        
+        print('Se ha hecho un POST con los siguientes datos', request.POST.keys())
         return render(request, 'carts/payment.html')
     else:
         return redirect('cart')

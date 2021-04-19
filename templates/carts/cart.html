@@ -9,150 +9,136 @@
         {%if error%}
             <p class = "alert alert-danger">{{error}}</p>
         {%elif cart%}
-            <form action = "{%url "payment"%}" method="POST">
+            <form action = "{%url "payment"%}" method = "POST">
                 {%csrf_token%}
-                <div class="container" style = "width:90%;">
-                    <div class="row">
-                    
-                        {%for product in cart%}
-                                <div  class="col-lg-3 " style = "padding:10px; margin-top:20px;">
-                                    <div class="card">
-                                        <a href="" style = "text-decoration: none; color: black;">
-                                            <img src="{{product.image1.url}}" class="card-img-top rounded" alt="..." style ="width:100%; height:350px;">
-                                        </a>
-                                            <div class="card-body">
-                                                <small class="text-muted">{{product.name}}</small>
-
-                                                <div class = "container" style = "padding:10px;">
-                                                    <div class = "row">
-                                                        <div class = "col align-self-start">
-                                                            <h5 class="card-title">$MXN{{product.price}}</h5>
-                                                        </div>
-                                                        <div class = "col align-self-end">
-                                                            <a type="button" class="btn-close text-reset"aria-label="Close" style="display:inline" href = "{{product.get_remove_path}}"></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                    <div class = "container" style = "padding:10px;">
-                                                        <div class = "row">
-                                                            <div class = "col align-self-start" style = "padding:3px;">
-                                                                <select class="form-select" aria-label="Default select example" name ="!*-col-{{product.ide}}-{{forloop.counter0}}">
-                                                                    {%for color in product.get_colors%}
-                                                                        <option value="{{size}}">
-                                                                            {{color | title}}
-                                                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 120 120">
-                                                                                <circle cx="60" cy="60" r="50" fill="{{color}}" />
-                                                                            </svg>
-                                                                        </option>
-                                                                    {%endfor%}
-                                                                </select>
-                                                            </div>
-                                                            <div class = "col align-self-end" style = "padding:3px;">
-                                                                <select class="form-select" aria-label="Default select example" name ="!*-size-{{product.ide}}-{{forloop.counter0}}">
-                                                                    {%for size in product.get_sizes%}
-                                                                            <option value="{{size}}">{{size | title}}</option>
-                                                                    {%endfor%}
-                                                                </select>
-                                                            </div>
-                                                            <div class = "col-auto" style = "padding:3px;">
-                                                                <input type="number" value="1" min = "1" max = "{{product.stock}}" step = "1" class="form-control" placeholder="Cantidad" aria-label="Cantidad" aria-describedby="basic-addon1" name = "!*-quantity-{{product.ide}}-{{forloop.counter0}} ">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        
-                                    </div>
-                                        
-                                </div>
-        
-                        {%endfor%}
-                
-                    </div>
-                </div>
                 <div class="container">
-                    <div class="row justify-content-end">
-                        <div class="col-4">
-                            <h3 class= "display-6" >Subtotal $MXN{{request.session.subtotal_}}</h3> 
+                    <div class="row justify-content-center"> 
+                        <div class="col-lg-8 align-self-center">
+                            <div class="card-body" style = "padding:0px;">
+                                <!--Artículos-->
+                                {%for product in cart%}
+                                    <div class="card-body">
+                                        <div class="card">
+                                            <h5 class="card-header">{{product.name}} </h5>
+                                            <div class="card-body">
+                                                <figure class="text-end">
+                                                    <img src="{{product.image1.url}}" class="rounded float-start" alt="..." style = "width:100px;">
+                                                    <blockquote class="blockquote">
+                                                    <div class="container">
+                                                        <div class="row justify-content-end">
+                                                            <div class="col-2">
+                                                                <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="!*-size-{{product.ide}}-{{forloop.counter0}}">
+                                                                    <option selected>Talla</option>
+                                                                    {%for size in product.get_sizes%}
+                                                                        <option value="{{size}}">{{size}}</option>
+                                                                    {%endfor%}   
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="!*-col-{{product.ide}}-{{forloop.counter0}}">
+                                                                    <option selected>Color</option>
+                                                                    {%for color in product.get_colors%}
+                                                                        <option value="{{size}}">{{color}}</option>
+                                                                    {%endfor%}
+                                                                </select>
+                                                            </div>
+                                                        
+                                                        </div>
+                                                    </div>
+                                                    <h4 style = "padding-top:30px;">$MXN{{product.price}}</h4>
+                                                    <a href="{{product.get_remove_path}}">Eliminar</a>
+                                                    <a href="" style="text-decoration:none">//</a>
+                                                    <a href="">Agregar a la WishList</a>
+                                                    </blockquote>
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {%endfor%}
+                                <!--Artículos-->
+                            </div>
+        
                         </div>
-                        <div class="col-4">
-                            <button class="btn btn-outline-success" type = "submit">Proceder al pago</button>
+                        <div class="col-lg-4" style="padding: 1rem;">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                <h5 class="card-title">SUBTOTAL: </h5>
+                                <p class="h4">$MXN{{request.session.subtotal_}}</p>
+                                <button href="#" class="btn btn-primary btn-lg" type = submit>PAGAR</button>
+                                </div>
+                                <div class="card-footer text-muted">
+                                Resumen del pedido
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </div> 
             </form>
         {%elif productscart%}
-            <form action = "{%url "payment"%}" method="POST">
+            <form action = "{%url "payment"%}" method = "POST">
                 {%csrf_token%}
-                <div class="container" style = "width:90%;">
-                    <div class="row">
-                    
-                        {%for productcart in productscart%}
-                                <div  class="col-lg-3 " style = "padding:10px; margin-top:20px;">
-                                    <div class="card">
-                                        <a href="" style = "text-decoration: none; color: black;">
-                                            <img src="{{productcart.product.image1.url}}" class="card-img-top rounded" alt="..." style ="width:100%; height:350px;">
-                                        </a>
-                                            <div class="card-body">
-                                                <small class="text-muted">{{productcart.product.name}}</small>
-
-                                                <div class = "container" style = "padding:10px;">
-                                                    <div class = "row">
-                                                        <div class = "col align-self-start">
-                                                            <h5 class="card-title">$MXN{{productcart.product.price}}</h5>
-                                                        </div>
-                                                        <div class = "col align-self-end">
-                                                            <a type="button" class="btn-close text-reset"aria-label="Close" style="display:inline" href = "{{productcart.product.get_remove_path}}"></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                    <div class = "container" style = "padding:10px;">
-                                                        <div class = "row">
-                                                            <div class = "col align-self-start" style = "padding:3px;">
-                                                                <select class="form-select" aria-label="Default select example" name ="!*-col-{{productcart.product.ide}}-{{forloop.counter0}}">
-                                                                    {%for color in productcart.product.get_colors%}
-                                                                        <option value="{{size}}">
-                                                                            {{color | title}}
-                                                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 120 120">
-                                                                                <circle cx="60" cy="60" r="50" fill="{{color}}" />
-                                                                            </svg>
-                                                                        </option>
-                                                                    {%endfor%}
-                                                                </select>
-                                                            </div>
-                                                            <div class = "col align-self-end" style = "padding:3px;">
-                                                                <select class="form-select" aria-label="Default select example" name ="!*-size-{{productcart.product.ide}}-{{forloop.counter0}}">
-                                                                    {%for size in productcart.product.get_sizes%}
-                                                                            <option value="{{size}}">{{size | title}}</option>
-                                                                    {%endfor%}
-                                                                </select>
-                                                            </div>
-                                                            <div class = "col-auto" style = "padding:3px;">
-                                                                <input type="number" value="1" min = "1" max = "{{productcart.product.stock}}" step = "1" class="form-control" placeholder="Cantidad" aria-label="Cantidad" aria-describedby="basic-addon1" name = "!*-quantity-{{productcart.product.ide}}-{{forloop.counter0}} ">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        
-                                    </div>
-                                        
-                                </div>
-        
-                        {%endfor%}
-                
-                    </div>
-                </div>
                 <div class="container">
-                    <div class="row justify-content-end">
-                        <div class="col-4">
-                            <h3 class= "display-6" >Subtotal $MXN{{request.user.cart.subtotal}}</h3> 
+                    <div class="row justify-content-center"> 
+                        <div class="col-lg-8 align-self-center">
+                            <div class="card-body" style = "padding:0px;">
+                                <!--Artículos-->
+                                {%for productcart in productscart%}
+                                    <div class="card-body">
+                                        <div class="card">
+                                            <h5 class="card-header">{{productcart.product.name}} </h5>
+                                            <div class="card-body">
+                                                <figure class="text-end">
+                                                    <img src="{{productcart.product.image1.url}}" class="rounded float-start" alt="..." style = "width:100px;">
+                                                    <blockquote class="blockquote">
+                                                    <div class="container">
+                                                        <div class="row justify-content-end">
+                                                            <div class="col-2">
+                                                                <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="!*-size-{{productcart.product.ide}}-{{forloop.counter0}}">
+                                                                    <option selected>Talla</option>
+                                                                    {%for size in productcart.product.get_sizes%}
+                                                                        <option value="{{size}}">{{size}}</option>
+                                                                    {%endfor%}   
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="!*-col-{{productcart.product.ide}}-{{forloop.counter0}}">
+                                                                    <option selected>Color</option>
+                                                                    {%for color in productcart.product.get_colors%}
+                                                                        <option value="{{size}}">{{color}}</option>
+                                                                    {%endfor%}
+                                                                </select>
+                                                            </div>
+                                                        
+                                                        </div>
+                                                    </div>
+                                                    <h4 style = "padding-top:30px;">$MXN{{productcart.product.price}}</h4>
+                                                    <a href="{{productcart.product.get_remove_path}}">Eliminar</a>
+                                                    <a href="" style="text-decoration:none">//</a>
+                                                    <a href="">Agregar a la WishList</a>
+                                                    </blockquote>
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {%endfor%}
+                                <!--Artículos-->
+                            </div>
+        
                         </div>
-                        <div class="col-4">
-                            <button class="btn btn-outline-success" type = "submit">Proceder al pago</button>
+                        <div class="col-lg-4" style="padding: 1rem;">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                <h5 class="card-title">SUBTOTAL: </h5>
+                                <p class="h4">$MXN{{request.user.cart.subtotal}}</p>
+                                <button href="#" class="btn btn-primary btn-lg" type = submit>PAGAR</button>
+                                </div>
+                                <div class="card-footer text-muted">
+                                Resumen del pedido
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </div> 
             </form>
         {%endif%}
     </div>

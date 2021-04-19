@@ -15,7 +15,8 @@ def login_view(request):
                 request.session['username'] = username
                 return redirect('home')
             else:
-                next_url = request.GET.get('next')
+                next_url = request.POST.get('next')
+                print(next_url)
                 if next_url:
                     return redirect(next_url)
                 else:
@@ -23,7 +24,7 @@ def login_view(request):
     try:
         user = request.session['username']
     except:
-        return render(request, 'users/login.html')
+        return render(request, 'users/login.html',{'next':request.GET.get('next')})
     else:
         return redirect('home')
  

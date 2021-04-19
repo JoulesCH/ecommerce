@@ -16,7 +16,11 @@
                 {%if error%}
                     <p class = "alert alert-danger">{{error}}</p>
                 {%endif%}
-              <form method = "POST" url = "/login" >
+              {%if next%}
+                <form method = "POST" url = "user/login/?next={{next}}" >
+              {%else%}
+                <form method = "POST" url = "user/login" >
+              {%endif%}
                 {%csrf_token%}
                 <div class="mb-4">
                   <label for="username" class="form-label">Usuario/Email</label>
