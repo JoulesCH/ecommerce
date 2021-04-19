@@ -41,6 +41,7 @@ def cart(request):
                 Cart_.save()
                 
             del request.session['cart']
+            return redirect('cart')
                 
         #Se leen los datos de la base 
         products = CartProduct.objects.filter(cart = request.user.cart.ide )
