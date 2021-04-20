@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from products.models import Product,CartProduct
+from products.models import Product,CartProduct, ProductSpec
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from shoppingcarts.models import Cart
@@ -44,6 +44,7 @@ def cart(request):
                 
         #Se leen los datos de la base 
         products = CartProduct.objects.filter(cart = request.user.cart.ide )
+        #options = ProductSpec.objects.filter(product = product)
         return render(request, 'carts/cart.html', {'productscart':products})
     
 @login_required

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from products.models import Product,CartProduct
+from products.models import Product,CartProduct, ProductSpec
 from django.contrib.auth.models import User
 from shoppingcarts.models import Cart
 # Create your views here.
