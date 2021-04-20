@@ -147,15 +147,18 @@
                             </div>
         
                         </div>
-                        <div class="col-lg-4" style="padding: 1rem; ">
-                            <div class="card text-center">
-                                <div class="card-body">
-                                <h5 class="card-title">SUBTOTAL: </h5>
-                                <p class="h4">$MXN{{request.user.cart.subtotal}}</p>
-                                <button href="#" class="btn btn-primary btn-lg" type = submit>PAGAR</button>
-                                </div>
-                                <div class="card-footer text-muted">
-                                Resumen del pedido
+                        <div class="col-lg-4" style="padding:1rem; ">
+                            <div class="sticky-top">
+                                <h3 style = "padding-bottom:1.5rem;"> Resumen del pedido </h3>
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                    <h5 class="card-title">SUBTOTAL: </h5>
+                                    <p class="h4">$MXN{{request.user.cart.subtotal}}</p>
+                                    <button href="#" class="btn btn-primary btn-lg" type = submit>PAGAR</button>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                    Resumen del pedido
+                                    </div>
                                 </div>
                             </div>
                         </div>
