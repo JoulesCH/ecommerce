@@ -9,6 +9,7 @@
         {%if error%}
             <p class = "alert alert-danger">{{error}}</p>
         {%elif cart%}
+            <p class = "alert alert-warning">Accede para modificar tallas y colores</p>
             <form action = "{%url "payment"%}" method = "POST">
                 {%csrf_token%}
                 <div class="container">
@@ -27,18 +28,18 @@
                                                     <div class="container">
                                                         <div class="row justify-content-end">
                                                             <div class="col-3">
-                                                                <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="!*-size-{{product.ide}}-{{forloop.counter0}}">
-                                                                    <option selected>Talla</option>
+                                                                <select class="form-select" disabled aria-label=".form-select-lg example" required = "true" name ="!*-size-{{product.ide}}-{{forloop.counter0}}">
+                                                                    <option selected disabled>Talla</option>
                                                                     {%for size in product.get_sizes%}
-                                                                        <option value="{{size}}">{{size}}</option>
+                                                                        <option value="{{size}}" disabled>{{size}}</option>
                                                                     {%endfor%}   
                                                                 </select>
                                                             </div>
                                                             <div class="col-3">
-                                                                <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="!*-col-{{product.ide}}-{{forloop.counter0}}">
-                                                                    <option selected>Color</option>
+                                                                <select class="form-select" disabled aria-label=".form-select-lg example" required = "true" name ="!*-col-{{product.ide}}-{{forloop.counter0}}">
+                                                                    <option selected disabled>Color</option>
                                                                     {%for color in product.get_colors%}
-                                                                        <option value="{{size}}">{{color}}</option>
+                                                                        <option value="{{size}}" disabled>{{color}}</option>
                                                                     {%endfor%}
                                                                 </select>
                                                             </div>
@@ -64,7 +65,7 @@
                                 <div class="card-body">
                                 <h5 class="card-title">SUBTOTAL: </h5>
                                 <p class="h4">$MXN{{request.session.subtotal_}}</p>
-                                <button href="#" class="btn btn-primary btn-lg" type = submit>PAGAR</button>
+                                <a class="btn btn-primary btn-lg" href= "{% url "login"%}?next={%url "cart"%}">Acceder</a>
                                 </div>
                                 <div class="card-footer text-muted">
                                 Resumen del pedido
@@ -120,23 +121,30 @@
                                                                         <select class="form-select" onchange="this.form.submit()" aria-label=".form-select-lg example" required = "true" name ="color">
                                                                     {%endif%}
                                                                             <option disabled = "true" selected>Color</option>
-                                                                        {%for color in productcart.product.get_colors%}
-                                                                            {%if color == productcart.color%}
-                                                                                <option value="{{color}}" selected>{{color}}</option>
-                                                                            {%else%}
-                                                                                <option value="{{color}}">{{color}}</option>
-                                                                            {%endif%}    
-                                                                        {%endfor%}
-                                                                    </select>
+                                                                            {%for color in productcart.product.get_colors%}
+                                                                                {%if color == productcart.color%}
+                                                                                    <option value="{{color}}" selected>{{color}}</option>
+                                                                                {%else%}
+                                                                                    <option value="{{color}}">{{color}}</option>
+                                                                                {%endif%}    
+                                                                            {%endfor%}
+                                                                         </select>
                                                                 </form>
                                                             </div>
+                                                            <div class="col-sm-2 col-md-2" style = "padding:0px; padding-left:10px;" >
+                                                                <form action = "option/{{productcart.ide}}" method = "POST"> 
+                                                                    {%csrf_token%}
+                                                                    <input value = "{{productcart.quantity}}" onchange="this.form.submit()" min = "1" max ="{{productcart.product.stock}}" type="number" step  ="1" class="form-control" id="cantidad" placeholder="Cantidad" name = "quantity">
+                                                                </form>
+                                                            </div>
+
                                                         
                                                         </div>
                                                     </div>
                                                     <h4 style = "padding-top:30px;">$MXN{{productcart.product.price}}</h4>
-                                                    <a href="{{productcart.get_remove_path}}">Eliminar</a>
-                                                    <a href="" style="text-decoration:none">//</a>
-                                                    <a href="">Agregar a la WishList</a>
+                                                    <a href="{{productcart.get_remove_path}}" style = "padding-top:10px;">Eliminar</a>
+                                                    <!-- <a href="" style="text-decoration:none">//</a>
+                                                    <a href="">Agregar a la WishList</a> -->
                                                     </blockquote>
                                                 </figure>
                                             </div>
@@ -167,4 +175,16 @@
             <!-- </form> -->
         {%endif%}
     </div>
+    <script>
+
+        window.addEventListener('scroll',function() {
+            //When scroll change, you save it on localStorage.
+            localStorage.setItem('scrollPosition',window.scrollY);
+        },false);
+        window.addEventListener('load',function() {
+            if(localStorage.getItem('scrollPosition') !== null)
+            window.scrollTo(0, localStorage.getItem('scrollPosition'));
+        },false);
+        
+    </script>
 {%endblock%}

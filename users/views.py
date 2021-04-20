@@ -6,6 +6,10 @@ from django.contrib.auth.models import User
 from shoppingcarts.models import Cart
 # Create your views here.
 def login_view(request):
+    next_url = request.GET.get('next')
+    if next_url:
+        request.session['next'] = next_url
+
     if request.method == 'POST':
             username = request.POST['username']
             password = request.POST['password']
@@ -13,14 +17,16 @@ def login_view(request):
             if user:
                 login(request, user)
                 request.session['username'] = username
-                return redirect('home')
-            else:
-                next_url = request.POST.get('next')
-                print(next_url)
-                if next_url:
-                    return redirect(next_url)
+                try: 
+                    next_url = request.session['next']
+                except:
+                    return redirect('home')
                 else:
-                    return render(request, 'users/login.html', {'error': 'Datos inválidos'})
+                    del request.session['next']
+                    return redirect(next_url)
+            else:
+                return render(request, 'users/login.html', {'error': 'Datos inválidos'})
+                    
     try:
         user = request.session['username']
     except:
@@ -53,7 +59,14 @@ def signup(request):
         user = authenticate(request, username = username, password = password)
         login(request, user)
         user = request.session['username']
-        return redirect('login')
+        try: 
+            next_url = request.session['next']
+        except:
+            return redirect('login')
+        else:
+            del request.session['next']
+            return redirect(next_url)
+        #return redirect('login')
     try:
         user = request.session['username']
     except:
