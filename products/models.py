@@ -31,6 +31,9 @@ class Product(models.Model):
     def get_specs(self):
         return self.productspec_set.all()
 
+    def get_product_path(self):
+        return '/product/' + str(self.ide)
+
     def __str__(self):
         return self.name
 

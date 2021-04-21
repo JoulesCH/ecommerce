@@ -86,10 +86,14 @@
                                 {%for productcart in productscart%}
                                     <div class="card-body">
                                         <div class="card">
-                                            <h5 class="card-header">{{productcart.product.name}}</h5>
+                                            <a href="{{productcart.product.get_product_path}}" style = "text-decoration: none; color: #6c757d;">
+                                                <h5 class="card-header">{{productcart.product.name}}</h5>
+                                            </a>
                                             <div class="card-body">
                                                 <figure class="text-end">
-                                                    <img src="{{productcart.product.image1.url}}" class="rounded float-start" alt="..." style = "width:100px;">
+                                                    <a href="{{productcart.product.get_product_path}}">
+                                                        <img src="{{productcart.product.image1.url}}" class="rounded float-start" alt="..." style = "width:100px;">
+                                                    </a>
                                                     <blockquote class="blockquote" style = "margin-bottom:0px;">
                                                     <div class="container">
                                                         <div class="row justify-content-end">

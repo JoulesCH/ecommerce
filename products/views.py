@@ -125,3 +125,11 @@ def select_option(request,ide):
         return redirect('cart')
     else:
         return redirect('cart')
+
+def product(request,ide):
+    try:
+        product = Product.objects.get(ide = ide)
+    except:
+        return render(request, 'products/product.html',{'error':'Artículo no encontrado'})
+    else:
+        return render(request, 'products/product.html', {'product':product})

@@ -1,0 +1,186 @@
+{%extends "base.html"%}
+{%block head%}
+  <title>Producto </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{%endblock%}
+
+{%block content%}
+    <div style = "padding:30px; padding-top:100px;">
+        {%if error%}
+            <p class = "alert alert-danger">{{error}}</p>
+        {%else%}
+            <!--Section: Block Content-->
+            <section class="mb-5">
+
+                <div class="row justify-content-center">
+                <div class="col-md-5 mb-4 mb-md-0">
+            
+                    <div id="mdb-lightbox-ui"></div>
+            
+                    <div class="mdb-lightbox">
+            
+                    <div class="row product-gallery mx-1">
+            
+                        <div class="col-12 mb-0">
+                            <figure class="view overlay rounded z-depth-1 main-img" style = "width:100%;">
+                                <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg"
+                                data-size="710x823">
+                                <img src="{{product.image1.url}}"
+                                    class="img-fluid z-depth-1">
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-3">
+                                <div class="view overlay rounded z-depth-1 gallery-item">
+                                    <img src="{{product.image1.url}}"
+                                    class="img-fluid">
+                                    <div class="mask rgba-white-slight"></div>
+                                </div>
+                                </div>
+                                <div class="col-3">
+                                <div class="view overlay rounded z-depth-1 gallery-item">
+                                    <img src="{{product.image2.url}}"
+                                    class="img-fluid">
+                                    <div class="mask rgba-white-slight"></div>
+                                </div>
+                                </div>
+                                <div class="col-3">
+                                <div class="view overlay rounded z-depth-1 gallery-item">
+                                    <img src="{{product.image3.url}}"
+                                    class="img-fluid">
+                                    <div class="mask rgba-white-slight"></div>
+                                </div>
+                                </div>
+                                <div class="col-3">
+                                <div class="view overlay rounded z-depth-1 gallery-item">
+                                    <img src="{{product.image4.url}}"
+                                    class="img-fluid">
+                                    <div class="mask rgba-white-slight"></div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    </div>
+            
+                </div>
+                <div class="col-md-6">
+            
+                    <h5 class="modal-title">{{product.name}}</h5>
+                    <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+                    {%if product.discount != 0%}
+                        <h4 style="color: rgba(58, 57, 56, 0.918);"><del>$MXN{{product.discount | floatformat:2}}</del></h4>
+                                <!-- <small style="color:rgb(206, 0, 0);" > <del>Ahorras:$MXN{{product.discount | floatformat:2}}</del></small> -->
+                    {%endif%}
+                        <h1>$MXN{{product.price | floatformat:2}}</h1>
+                            
+                    <p class="pt-1">{{product.descripcion}}</p>
+                        <div class="table-responsive">
+                        <table class="table table-sm table-borderless mb-0">
+                            <tbody>
+                            <tr>
+                                <th class="pl-0 w-25" scope="row"><strong>Tallas</strong></th>
+                                <td>S, M, L</td>
+                            </tr>
+                            <tr>
+                                <th class="pl-0 w-25" scope="row"><strong>Colores</strong></th>
+                                <td>
+                                    {%for spec in product.get_specs%}
+                                        
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 120 120">
+                                            <circle cx="60" cy="60" r="50" fill="{{spec.color.codigo}}" stroke = "black" stroke-width="5px"/>
+                                        </svg>
+                                        - {{spec.color.nombre}}  
+                                    {%endfor%}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="pl-0 w-25" scope="row"><strong>Stock</strong></th>
+                                <td>{{product.stock}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <hr>
+                    <form method="POST" action="">
+                        <div class="table-responsive mb-2">
+                        <table class="table table-sm table-borderless">
+                            <tbody>
+                            <tr>
+                                <td class="pl-0 pb-0 w-25">Cantidad</td>
+                                <td class="pb-0 pb-0 w-25">Color</td>
+                                <td class = "pb-0 pb-0 w-25">Cantidad</td>
+                            </tr>
+                            <tr>
+                                <td class="pl-0">
+                                    <div style = "padding-top:3px; width:50%;"> 
+                                        {%csrf_token%}
+                                        {%if  product.stock == 0 %}
+                                            <select class="form-select" aria-label=".form-select-lg example" disabled required = "true" name ="size">
+                                        {%else%}
+                                            <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="size">
+                                        {%endif%}
+                                                <option disabled = "true" selected>Talla</option>
+                                            {% for spec in product.get_specs %}
+                                                    <option value="{{spec.size.valor}}">{{spec.size.valor}}</option>
+                                            {%endfor%}   
+                                    </div>
+                                    
+                                </td>
+                                <td>
+                                    <div style = "padding-top:3px; width:50%;"> 
+                                        {%csrf_token%}
+                                        {%if  product.stock == 0 %}
+                                            <select class="form-select"  aria-label=".form-select-lg example" disabled required = "true" name ="color">
+                                        {%else%}
+                                            <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="color">
+                                        {%endif%}
+                                                <option disabled = "true" selected>Color</option>
+                                                {%for spec in product.get_specs%}
+                                                        <!-- if foorloop.counter0 == 0 -->
+                                                        <option value="{{spec.color.nombre}}">{{spec.color.nombre}}</option>
+                                                {%endfor%}
+                                            </select>
+                                    </div>
+                                </td>
+                                <td class="pl-0">
+                                    <div style = "padding-top:3px; width:50%;"> 
+                                        {%csrf_token%}
+                                        {%if  product.stock == 0 %}
+                                            <input value = "0" disabled min = "0" max ="{{product.tock}}" type="number" step  ="1" class="form-control" id="cantidad" placeholder="Cantidad" name = "quantity">
+                                        {%else%}
+                                            <input value = "1" min = "1" max ="{{product.stock}}" type="number" step  ="1" class="form-control" id="cantidad" placeholder="Cantidad" name = "quantity">
+                                        {%endif%}
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <button type="submit" class="btn btn-dark btn-md mr-1 mb-2">Comprar ahora</button>
+                        <a type="button" href="{{ product.get_cart_path }}"  class="btn btn-outline-secondary btn-md mr-1 mb-2"><i
+                            class="fas fa-shopping-cart pr-2"></i>Agregar al carrito</a>
+                    </form>
+                </div>
+            </div>
+            
+            </section>
+            <!--Section: Block Content-->
+        {%endif%}
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+        // MDB Lightbox Init
+        $(function () {
+            $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+        });
+        });
+    </script>
+{%endblock%}

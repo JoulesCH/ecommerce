@@ -1,87 +1,90 @@
 {%for product in products%}   
    <div class="modal fade" id="emodal{{product.ide}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl {{forloop.counter0}}" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg {{forloop.counter0}}" role="document">
         <div class="modal-content {{forloop.counter0}}">
             <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">{{product.name}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-            <!--Contenido del body -->    
-            <div class="container">
-                <div class="row">
-                    <div class="col"> <!--Carrusel-->
-                        <div id="carouselExampleIndicators{{forloop.counter0}}" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <a href="{{product.get_product_path}}" style = "text-decoration: none; color: black;">
+                <div class="modal-body">
+                <!--Contenido del body -->    
+                <div class="container">
+                    <div class="row">
+                        <div class="col"> <!--Carrusel-->
+                            <div id="carouselExampleIndicators{{forloop.counter0}}" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{product.image1.url}}" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="{{product.image2.url}}" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="{{product.image3.url}}" class="d-block w-100" alt="...">
+                                </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators{{forloop.counter0}}" aria-controls="carouselExampleIndicators{{forloop.counter0}}" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators{{forloop.counter0}}" aria-controls="carouselExampleIndicators{{forloop.counter0}}" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
-                            <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="{{product.image1.url}}" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{product.image2.url}}" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{product.image3.url}}" class="d-block w-100" alt="...">
-                            </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators{{forloop.counter0}}" aria-controls="carouselExampleIndicators{{forloop.counter0}}" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon " aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators{{forloop.counter0}}" aria-controls="carouselExampleIndicators{{forloop.counter0}}" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div> <!--Carrusel-->
-                    <div class="col-lg">
-                        {%if product.discount != 0%}
-                            <h4 style="color: rgba(58, 57, 56, 0.918);"><del>$MXN{{product.discount | floatformat:2}}</del></h4>
-                            <!-- <small style="color:rgb(206, 0, 0);" > <del>Ahorras:$MXN{{product.discount | floatformat:2}}</del></small> -->
-                        {%endif%}
-                        <h1>$MXN{{product.price | floatformat:2}}</h1>
-                        
-                        
-                        <div class="container">
-                            <div class="row" style="padding-top: 1.5rem;">
-                                <p class="h4"><strong>Colores:  </strong></p>
-                            </div>
-                            <div class="row">
-                                <div class="col align-self-start">
+                        </div> <!--Carrusel-->
+                        <div class="col-lg">
+                            <br>
+                            {%if product.discount != 0%}
+                                <h4 style="color: rgba(58, 57, 56, 0.918);"><del>$MXN{{product.discount | floatformat:2}}</del></h4>
+                                <!-- <small style="color:rgb(206, 0, 0);" > <del>Ahorras:$MXN{{product.discount | floatformat:2}}</del></small> -->
+                            {%endif%}
+                            <h1>$MXN{{product.price | floatformat:2}}</h1>
+                            
+                            
+                            <div class="container">
+                                <div class="row" style="padding-top: 1.5rem;">
+                                    <p class="h4"><strong>Colores:  </strong></p>
+                                </div>
+                                <div class="row">
+                                    <div class="col align-self-start">
 
+                                        {%for spec in product.get_specs%}
+                                            <!-- <a href="#" role="button"> -->
+                                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 120 120">
+                                                    <circle cx="60" cy="60" r="50" fill=" {{spec.color.codigo}}"></circle> stroke= "#0d6efd" stroke-width="7"></circle>
+                                                </svg>
+                                            <!-- </a> -->
+                                        {%endfor%}
+                                        
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 2rem;">
+                                    <p class="h4"> <strong>Tallas: </strong> </p>
+                                </div> 
+                                <div class="row">
+                                    <div class="col align-self-start">
                                     {%for spec in product.get_specs%}
-                                        <!-- <a href="#" role="button"> -->
-                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 120 120">
-                                                <circle cx="60" cy="60" r="50" fill=" {{spec.color.codigo}}"></circle> stroke= "#0d6efd" stroke-width="7"></circle>
-                                            </svg>
-                                        <!-- </a> -->
+                                        <button type="button" class="btn btn-outline-dark" style="border-radius: .5rem" disabled >{{spec.size.valor}}</button>
                                     {%endfor%}
-                                    
+                                    </div>
                                 </div>
+                                <div class="row" style="padding-top: 2rem;">
+                                    <p class="h4"> <strong>Descripción: </strong> </p>
+                                    <p>{{product.descripcion}}</p>
+                                </div> 
                             </div>
-                            <div class="row" style="padding-top: 2rem;">
-                                <p class="h4"> <strong>Tallas: </strong> </p>
-                            </div> 
-                            <div class="row">
-                                <div class="col align-self-start">
-                                {%for spec in product.get_specs%}
-                                    <button type="button" class="btn btn-outline-dark" style="border-radius: .5rem" disabled >{{spec.size.valor}}</button>
-                                {%endfor%}
-                                </div>
-                            </div>
-                            <div class="row" style="padding-top: 2rem;">
-                                <p class="h4"> <strong>Descripción: </strong> </p>
-                                <p>{{product.descripcion}}</p>
-                            </div> 
                         </div>
                     </div>
                 </div>
-            </div>
-            </div>
+                </div>
+            </a>
             <div class="modal-footer">
             <a type="button" class="btn btn-outline-dark btn-lg" href = "{{ product.get_cart_path }}" >Agregar al carrito</a>
             <button type="button" class="btn btn-outline-danger btn-lg"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart" viewBox="0 0 16 16">
