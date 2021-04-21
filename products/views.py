@@ -43,6 +43,16 @@ def add(request, ide):
             if context['product'].stock == 0:
                 context['error'] =  'No hay más productos disponibles'
             else:
+
+                if request.method == "POST":
+                    try:
+                        cantidad = request.POST['quantity']
+                        color = request.POST['color']
+                        size = request.POST['size']
+                    except:
+                        request.session['error'] = 'Selecciona todas las opciones'
+                        return redirect(request.META.get('HTTP_REFERER'))    
+
                 user = User.objects.get(pk = request.user.pk)
                 cart = Cart.objects.get(user = user)
                 #Sumamos uno a la cuenta de productso
@@ -53,6 +63,11 @@ def add(request, ide):
                 cart.save()
                 #Agregamos el producto
                 cart_product = CartProduct(cart = user.cart, product = context['product'])
+
+                if request.method == "POST":
+                    cart_product.quantity = cantidad
+                    cart_product.talla = size
+                    cart_product.color = color
                 cart_product.save()
 
         return render(request, 'products/add.html', context)

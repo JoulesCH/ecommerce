@@ -16,6 +16,8 @@ class Product(models.Model):
     image2 = models.ImageField(upload_to = 'static/images/', null = True)
     image3 = models.ImageField(upload_to = 'static/images/', null = True)
     image4 = models.ImageField(upload_to = 'static/images/', null = True)
+
+    #popularity 
     
     def get_categories(self):
         if ',' in self.categories:

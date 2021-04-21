@@ -83,7 +83,11 @@
                             <tbody>
                             <tr>
                                 <th class="pl-0 w-25" scope="row"><strong>Tallas</strong></th>
-                                <td>S, M, L</td>
+                                <td>
+                                    {%for spec in product.get_specs%}
+                                        | {{spec.size.valor}} 
+                                    {%endfor%}
+                                </td>
                             </tr>
                             <tr>
                                 <th class="pl-0 w-25" scope="row"><strong>Colores</strong></th>
@@ -105,7 +109,7 @@
                         </table>
                         </div>
                         <hr>
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ product.get_cart_path }}">
                         <div class="table-responsive mb-2">
                         <table class="table table-sm table-borderless">
                             <tbody>
@@ -161,8 +165,9 @@
                         </table>
                         </div>
                         <button type="submit" class="btn btn-dark btn-md mr-1 mb-2">Comprar ahora</button>
-                        <a type="button" href="{{ product.get_cart_path }}"  class="btn btn-outline-secondary btn-md mr-1 mb-2"><i
-                            class="fas fa-shopping-cart pr-2"></i>Agregar al carrito</a>
+                        <button type="submit"  class="btn btn-outline-secondary btn-md mr-1 mb-2">
+                            Agregar al carrito
+                        </button>
                     </form>
                 </div>
             </div>
