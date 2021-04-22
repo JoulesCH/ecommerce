@@ -25,26 +25,6 @@ def cart(request):
         if 'cart' in request.session:
             del request.session['cart']
             return redirect('cart')
-
-            # cart = []
-            # user = User.objects.get(pk = request.user.pk)
-            # Cart_ = Cart.objects.get(user = user)
-            # for k in request.session.keys():
-            #     if '*!' in k:
-            #         cart+= [Product.objects.get(ide = int(k.replace('*!','')))]*request.session[k]
-            # for product in cart:
-            #     cart_product = CartProduct(cart = request.user.cart, product = product)
-            #     cart_product.save()
-                
-            #     #Sumamos uno a la cuenta de productso
-            #     Cart_.no_productos +=1
-            #     #Modificamos el subtotal
-            #     Cart_.subtotal+= product.price
-            #     Cart_.save()
-                
-            # del request.session['cart']
-            # return redirect('cart')
-                
         #Se leen los datos de la base 
         products = CartProduct.objects.filter(cart = request.user.cart.ide )
         subtotal = 0
@@ -57,8 +37,13 @@ def cart(request):
         Cart_.subtotal = subtotal
         Cart_.save()
         #options = ProductSpec.objects.filter(product = product)
+        if 'error' in request.session:
+            error = request.session['error']
+            del request.session['error']
+        else:
+            error= None
         if products:
-            return render(request, 'carts/cart.html', {'productscart':products, 'subtotal':subtotal})
+            return render(request, 'carts/cart.html', {'productscart':products, 'subtotal':subtotal,'error_':error})
         else:
             return render (request, 'carts/cart.html',{'error': 'Carrito vacío'})
 
@@ -66,9 +51,8 @@ def cart(request):
 def payment(request):
     #print()
     if request.method == 'POST':
-        print('Se ha hecho un POST con los siguientes datos', request.POST.keys())
-        return render(request, 'carts/payment.html')
-    else:
         return render(request, 'users/address.html')
-        #return redirect('cart')
+    else:
+        
+        return redirect('cart')
         #return render(request, 'carts/payment.html', {'error': 'Debes acceder a tu carrito primero para escoger detalles'})

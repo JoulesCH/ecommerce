@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from products.models import Product,CartProduct, ProductSpec
+from products.models import Product,CartProduct, ProductSpec, Size, Color
 from django.contrib.auth.models import User
 from shoppingcarts.models import Cart
 # Create your views here.
@@ -137,7 +137,17 @@ def select_option(request,ide):
                 cartproduct.quantity = 1
                 cartproduct.color = request.POST['color']
             elif 'quantity' in request.POST.keys():
-                cartproduct.quantity = int(request.POST['quantity'])
+                try:
+                    size = Size.objects.filter(valor =cartproduct.talla)[0]
+                    color = Color.objects.filter(nombre =cartproduct.color)[0]
+                except:
+                    request.session['error'] = {'id':cartproduct.ide, 'texto': 'Escoge talla y color'}
+                else:
+                    product_spec = ProductSpec.objects.get(product = cartproduct.product, size = size, color = color)
+                    if product_spec.stock >= int(request.POST['quantity']):
+                        cartproduct.quantity = int(request.POST['quantity'])
+                    else:
+                        request.session['error'] = {'id':cartproduct.ide, 'Cantidad':request.POST['quantity']}
             cartproduct.save()
         return redirect('cart')
     else:
