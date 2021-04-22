@@ -57,6 +57,9 @@ class CartProduct(models.Model):
             talla = Size.objects.filter(valor = self.talla)[0]
             color = Color.objects.filter(nombre = self.color)[0]
             return ProductSpec.objects.get(product = self.product, size = talla, color = color).stock
+    
+    def get_total(self):
+        return self.product.price*float(self.quantity)
 
 class Size(models.Model):
     ide = models.AutoField(primary_key = True)

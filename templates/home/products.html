@@ -10,9 +10,14 @@
                     {%if principal_category in product.categories%}
                         <div class="col-lg-3 " style = "padding:10px; margin-top:20px;">
                             <div class="card">
-                                <a href="{{product.get_product_path}}" style = "text-decoration: none; color: black;">
-                                    <img src="{{product.image1.url}}" class="card-img-top rounded" alt="..." style ="width:100%; height:350px;">
-                                    <div class="card-body">
+                                    <div class = "container" style = "padding:0px;">
+                                        <img src="{{product.image1.url}}" 
+                                        class="card-img-top rounded" alt="..." style ="width:100%; height:350px; cursor: pointer;"
+                                        data-bs-toggle="modal" data-bs-target="#emodal{{product.ide}}" aria-controls="{{product.ide}}" 
+                                        >
+                                    </div>
+                                <a href="{{product.get_product_path}}" style = "text-decoration: none; color: black;">    
+                                        <div class="card-body">
                                         <small class="text-muted">{{product.name}}</small>
                                         <br>
                                         {%if product.discount != 0%}
@@ -32,23 +37,27 @@
                                                 </div>
                                                 <div class = "col" style = "text-align: right;">
                                                     {%for spec in product.get_specs%}
-                                                        <p style="display:inline" >|{{spec.size.valor}}</p>
+                                                        <button type="button" class="btn btn-outline-dark btn-sm" style="border-radius: .5rem" disabled >{{spec.size.valor}}</button>
+                                                        <!-- <p style="display:inline" >|{{spec.size.valor}}</p> -->
                                                     {%endfor%}
                                                 </div>
                                             </div>
                                         </div>
                                 </a>
                                     <div class="container" style = "padding:0px;">
-                                        <div class="row justify-content-between">
-                                            <div class="col-9">
+                                        <div class="row justify-content-start" >
+                                            <div class="col-8" style = "padding-right:0px;">
                                                 <a href="{{ product.get_cart_path }}" class="btn btn-outline-dark">Agregar al carrito</a>
                                             </div>
-                                            <div class="col-3"">
-                                                <button type="button" class="btn btn-outline-secondary " data-bs-toggle="modal" data-bs-target="#emodal{{product.ide}}" aria-controls="{{product.ide}}">
+                                            <div class="col-3" style = "padding:0px;">
+                                                <!-- <button type="button" class="btn btn-outline-secondary " data-bs-toggle="modal" data-bs-target="#emodal{{product.ide}}" aria-controls="{{product.ide}}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-angle-expand" viewBox="0 0 16 16">
                                                         <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"/>
                                                     </svg>
-                                                </button>
+                                                </button> -->
+                                                <button type="button" class="btn btn-outline-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart" viewBox="0 0 16 16">
+                                                    <path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"/>
+                                                </svg></button>
                                             </div>
                                         </div>
                                     </div>

@@ -131,8 +131,10 @@ def select_option(request,ide):
             return redirect('cart')
         else:
             if 'size' in request.POST.keys():
+                cartproduct.quantity = 1
                 cartproduct.talla = request.POST['size']
             elif 'color' in request.POST.keys():
+                cartproduct.quantity = 1
                 cartproduct.color = request.POST['color']
             elif 'quantity' in request.POST.keys():
                 cartproduct.quantity = int(request.POST['quantity'])

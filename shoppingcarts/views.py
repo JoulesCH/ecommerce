@@ -23,30 +23,45 @@ def cart(request):
         #Si está loggeado 
         #Ver si  hay productos cacheados para agregarlos a la base de datos
         if 'cart' in request.session:
-            cart = []
-            user = User.objects.get(pk = request.user.pk)
-            Cart_ = Cart.objects.get(user = user)
-            for k in request.session.keys():
-                if '*!' in k:
-                    cart+= [Product.objects.get(ide = int(k.replace('*!','')))]*request.session[k]
-            for product in cart:
-                cart_product = CartProduct(cart = request.user.cart, product = product)
-                cart_product.save()
-                
-                #Sumamos uno a la cuenta de productso
-                Cart_.no_productos +=1
-                #Modificamos el subtotal
-                Cart_.subtotal+= product.price
-                Cart_.save()
-                
             del request.session['cart']
             return redirect('cart')
+
+            # cart = []
+            # user = User.objects.get(pk = request.user.pk)
+            # Cart_ = Cart.objects.get(user = user)
+            # for k in request.session.keys():
+            #     if '*!' in k:
+            #         cart+= [Product.objects.get(ide = int(k.replace('*!','')))]*request.session[k]
+            # for product in cart:
+            #     cart_product = CartProduct(cart = request.user.cart, product = product)
+            #     cart_product.save()
+                
+            #     #Sumamos uno a la cuenta de productso
+            #     Cart_.no_productos +=1
+            #     #Modificamos el subtotal
+            #     Cart_.subtotal+= product.price
+            #     Cart_.save()
+                
+            # del request.session['cart']
+            # return redirect('cart')
                 
         #Se leen los datos de la base 
         products = CartProduct.objects.filter(cart = request.user.cart.ide )
+        subtotal = 0
+
+        for product in products:
+            subtotal+= product.get_total()
+
+        user = User.objects.get(pk = request.user.pk)
+        Cart_ = Cart.objects.get(user = user)
+        Cart_.subtotal = subtotal
+        Cart_.save()
         #options = ProductSpec.objects.filter(product = product)
-        return render(request, 'carts/cart.html', {'productscart':products})
-    
+        if products:
+            return render(request, 'carts/cart.html', {'productscart':products, 'subtotal':subtotal})
+        else:
+            return render (request, 'carts/cart.html',{'error': 'Carrito vacío'})
+
 @login_required
 def payment(request):
     #print()
@@ -54,5 +69,6 @@ def payment(request):
         print('Se ha hecho un POST con los siguientes datos', request.POST.keys())
         return render(request, 'carts/payment.html')
     else:
-        return redirect('cart')
+        return render(request, 'users/address.html')
+        #return redirect('cart')
         #return render(request, 'carts/payment.html', {'error': 'Debes acceder a tu carrito primero para escoger detalles'})
