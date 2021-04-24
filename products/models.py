@@ -52,9 +52,11 @@ class CartProduct(models.Model):
 
     def get_stock(self):
         if self.talla == 'Unico' or self.color == 'Unico':
-            return 0
+            return 
         else:
             talla = Size.objects.filter(valor = self.talla)[0]
+            if '-' in self.color:
+                self.color = self.color[:self.color.find('-')]
             color = Color.objects.filter(nombre = self.color)[0]
             return ProductSpec.objects.get(product = self.product, size = talla, color = color).stock
     

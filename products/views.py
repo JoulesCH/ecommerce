@@ -44,14 +44,21 @@ def add(request, ide):
                 context['error'] =  'No hay más productos disponibles'
             else:
 
-                if request.method == "POST":
+                if request.method == "POST": #Anclado al if de abajo
                     try:
                         cantidad = request.POST['quantity']
                         color = request.POST['color']
                         size = request.POST['size']
                     except:
                         request.session['error'] = 'Selecciona todas las opciones'
-                        return redirect(request.META.get('HTTP_REFERER'))    
+                        return redirect(request.META.get('HTTP_REFERER'))
+                    else:
+                        size = Size.objects.filter(valor = size)[0]
+                        color = Color.objects.filter(nombre = color)[0]
+                        product = ProductSpec.objects.get(product = context['product'], size = size, color = color)
+                        if product.stock == 0:
+                            request.session['error'] = f'No hay más stock de {size}-{color.nombre}'
+                            return redirect(request.META.get('HTTP_REFERER'))
 
                 user = User.objects.get(pk = request.user.pk)
                 cart = Cart.objects.get(user = user)
@@ -159,4 +166,8 @@ def product(request,ide):
     except:
         return render(request, 'products/product.html',{'error':'Artículo no encontrado'})
     else:
+        if 'error' in request.session:
+            error = request.session['error']
+            del request.session['error']
+            return render(request, 'products/product.html', {'product':product, 'error_':error})
         return render(request, 'products/product.html', {'product':product})

@@ -4,139 +4,143 @@
 {%endblock%}
 
 {%block content%}
-    <div style ="padding:30px; padding-top:100Px;">
+    <div style ="padding:30px; padding-top:100px;">
         <section>
             <!--Grid row-->
             <div class="row">
         
             <!--Grid column-->
             <div class="col-lg-8 mb-4">
-        
+  
                 <!-- Card -->
                 <div class="card wish-list pb-1">
-                <div class="card-body">
-        
+                  <div class="card-body">
+          
                     <h5 class="mb-2">Detalles para envío</h5>
-        
+          
                     <!-- Grid row -->
                     <div class="row">
-        
-                    <!-- Grid column -->
-                    <div class="col-lg-6">
-        
+          
+                      <!-- Grid column -->
+                      <div class="col-lg-6">
+          
                         <!-- First name -->
                         <div class="md-form md-outline mb-0 mb-lg-4">
-                        <input type="text" id="firstName" class="form-control mb-0 mb-lg-2">
-                        <label for="firstName">Nombre</label>
+                            <label for="firstName">Nombre</label>
+                            <input type="text" id="firstName" class="form-control mb-0 mb-lg-2" placeholder = "Nombre del destinatario">
+                          
                         </div>
-        
-                    </div>
-                    <!-- Grid column -->
-        
-                    <!-- Grid column -->
-                    <div class="col-lg-6">
-        
+          
+                      </div>
+                      <!-- Grid column -->
+          
+                      <!-- Grid column -->
+                      <div class="col-lg-6">
+          
                         <!-- Last name -->
                         <div class="md-form md-outline">
-                        <input type="text" id="lastName" class="form-control">
-                        <label for="lastName">Apellido</label>
+                            <label for="lastName">Apellido</label>
+                            <input type="text" id="lastName" class="form-control" placeholder = "Apellido del destinatario">
                         </div>
-        
-                    </div>
-                    <!-- Grid column -->
-        
+          
+                      </div>
+                      <!-- Grid column -->
+          
                     </div>
                     <!-- Grid row -->
-
+                
+          
                     <!-- Address Part 1 -->
-                    <div class="md-form md-outline mt-0" style="padding-bottom: 1rem;">
-                    <input type="text" id="form14" placeholder="Calle, colonia, número exterior" class="form-control">
-                    <label for="form14">Dirección</label>
+                    <!-- <div class="md-form md-outline mt-0" style="padding-bottom: 1rem;">
+                        <label for="form14">Calle</label>
+                        <input type="text" id="form14" placeholder="Calle, colonia, número exterior" class="form-control">
                     </div>
-        
+           -->
                     <!-- Address Part 2 -->
-                    <div class="md-form md-outline" style="padding-bottom: 1rem;">
-                    <input type="text" id="form15" placeholder="Número interior etc."
+                    <div class="md-form md-outline">
+                        <label for="form15">Dirección</label>
+                        <input type="text" id="form15" placeholder="Calle, número exterior e interior"
                         class="form-control">
-                    <label for="form15">Detalles de dirección</label>
+                      
                     </div>
-        
-                     <!-- Grid row -->
-            <div class="row">
-  
-                <!-- Grid column -->
-                <div class="col-lg-6" style="padding-bottom: 1rem;">
-    
-                  <!--Código Postal -->
-                  <div class="md-form md-outline">
-                    <input type="text" id="form16" class="form-control">
-                    <label for="form16">Código Postal</label>
+          
+                    <!-- Grid row -->
+                    <div class="row" >
+          
+                      <!-- Grid column -->
+                      <div class="col-lg-6" style = "padding-top: 10px;">
+          
+                        <!--Código Postal -->
+                        <div class="md-form md-outline">
+                            <label for="form16">Código Postal</label>
+                            <input type="text" id="form16" class="form-control">
+                          </div>
+          
+                      </div>
+                      <!-- Grid column -->
+          
+                      <!-- Grid column -->
+                      <div class="col-lg-6" style = "padding-top: 10px;">
+          
+                        <!-- Ciudad estado -->
+                        <div class="md-form md-outline">
+                            <label for="form17">Ciudad / Estado</label>
+                            <input type="text" id="form17" class="form-control">
+                        </div>
+          
+                      </div>
+                      <!-- Grid column -->
+          
                     </div>
-    
-                </div>
-                <!-- Grid column -->
-    
-                <!-- Grid column -->
-                <div class="col-lg-6" style="padding-bottom: 1rem;">
-    
-                  <!-- Ciudad estado -->
-                  <div class="md-form md-outline">
-                    <input type="text" id="form17" class="form-control">
-                    <label for="form17">Ciudad / Estado</label>
-                  </div>
-    
-                </div>
-                <!-- Grid column -->
-    
-              </div>
-              <!-- Grid row -->
-    
-              <!-- Grid row -->
-              <div class="row">
-    
-                <!-- Grid column -->
-                <div class="col-lg-6" style="padding-bottom: 1rem;">
-    
-                  <!-- Phone -->
-                  <div class="md-form md-outline">
-                    <input type="number" id="form18" class="form-control">
-                    <label for="form18">Número de teléfono/ Celular</label>
+                    <!-- Grid row -->
+          
+                    <!-- Grid row -->
+                    <div class="row">
+          
+                      <!-- Grid column -->
+                      <div class="col-lg-6" style = "padding-top: 10px;">
+          
+                        <!-- Phone -->
+                        <div class="md-form md-outline">
+                            <label for="form18">Número de teléfono/ Celular</label>
+                            <input type="number" id="form18" class="form-control">
+                          </div>
+          
+                      </div>
+                      <!-- Grid column -->
+          
+                      <!-- Grid column -->
+                      <div class="col-lg-6" style = "padding-top: 10px;">
+          
+                         <!-- Email address -->
+                         <div class="md-form md-outline">
+                            <label for="form19">Correo Electrónico</label>
+                            <input type="email" id="form19" class="form-control">
+                          
+                          </div>
+          
+                      </div>
+                      <!-- Grid column -->
+          
                     </div>
-    
-                </div>
-                <!-- Grid column -->
-    
-                <!-- Grid column -->
-                <div class="col-lg-6" style="padding-bottom: 1rem;">
-    
-                   <!-- Email address -->
-                   <div class="md-form md-outline">
-                    <input type="email" id="form19" class="form-control">
-                    <label for="form19">Correo Electrónico</label>
-                    </div>
-    
-                </div>
-                <!-- Grid column -->
-    
-              </div>
-              <!-- Grid row -->
-        
+                    <!-- Grid row -->
+          
                     <!-- Additional information -->
-                    <div class="md-form md-outline" style="padding-bottom: 1rem;">
-                    <textarea id="form76" placeholder="Casa azul, puerta amarilla, etc." class="md-textarea form-control" rows="4"></textarea>
-                    <label for="form76">Información adicional</label>
+                    <div class="md-form md-outline" style = "padding-top: 10px;">
+                        <label for="form76">Información adicional</label>
+                        <textarea id="form76" placeholder="Casa azul, puerta amarilla, etc." class="md-textarea form-control" rows="4"></textarea>
                     </div>
-        
-                    <div class="form-check pl-0 mb-4 mb-lg-0" style="padding-bottom: 1rem;">
-                    <input type="checkbox" class="form-check-input filled-in" id="new3">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="new3">Recordar datos</label>
+          
+                    <div class="form-check pl-0 mb-4 mb-lg-0">
+                      <input type="checkbox" class="form-check-input filled-in" id="new3">
+                      <label class="form-check-label small text-uppercase card-link-secondary" for="new3">Recordar datos</label>
                     </div>
-        
-                </div>
+          
+                  </div>
                 </div>
                 <!-- Card -->
-        
-            </div>
+          
+              </div>
             <!--Grid column-->
         
             <!--Grid column-->

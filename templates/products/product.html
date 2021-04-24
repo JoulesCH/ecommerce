@@ -2,12 +2,28 @@
 {%block head%}
   <title>Producto </title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+      <script>
+          $(document).ready(function()
+              {
+                  var $productvar = $("#talla");
+                  var $itemvar = $("#color");
+  
+                      $options = $itemvar.find('option');
+                      $productvar.on('change',function(){
+                          $itemvar.html($options.filter('[shit = "'+ this.value + '"]'));
+                      }).trigger('change')
+              }
+          );
+  
+      </script>
 {%endblock%}
 
 {%block content%}
     <div style = "padding:30px; padding-top:100px;">
         {%if error%}
-            <p class = "alert alert-danger">{{error}}</p>
+            <p class = "alert alert-dark">{{error}}</p>
         {%else%}
             <!--Section: Block Content-->
             <section class="mb-5">
@@ -110,6 +126,9 @@
                         </div>
                         <hr>
                     <form method="POST" action="{{ product.get_cart_path }}">
+                        {%if error_%}
+                            <p class = "alert alert-dark">{{error_}}</p>
+                        {%endif%}
                         <div class="table-responsive mb-2">
                         <table class="table table-sm table-borderless">
                             <tbody>
@@ -125,7 +144,7 @@
                                         {%if  product.stock == 0 %}
                                             <select class="form-select" aria-label=".form-select-lg example" disabled required = "true" name ="size">
                                         {%else%}
-                                            <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="size">
+                                            <select id = "talla" class="form-select" aria-label=".form-select-lg example" required = "true" name ="size">
                                         {%endif%}
                                                 <option disabled = "true" selected>Talla</option>
                                             {% for spec in product.get_specs %}
@@ -140,12 +159,12 @@
                                         {%if  product.stock == 0 %}
                                             <select class="form-select"  aria-label=".form-select-lg example" disabled required = "true" name ="color">
                                         {%else%}
-                                            <select class="form-select" aria-label=".form-select-lg example" required = "true" name ="color">
+                                            <select id = "color" class="form-select" aria-label=".form-select-lg example" required = "true" name ="color">
                                         {%endif%}
                                                 <option disabled = "true" selected>Color</option>
                                                 {%for spec in product.get_specs%}
                                                         <!-- if foorloop.counter0 == 0 -->
-                                                        <option value="{{spec.color.nombre}}">{{spec.color.nombre}}</option>
+                                                        <option value="{{spec.color.nombre}}" shit = "{{spec.size.valor}}">{{spec.color.nombre}}</option>
                                                 {%endfor%}
                                             </select>
                                     </div>

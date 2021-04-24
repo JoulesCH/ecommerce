@@ -51,6 +51,12 @@ def cart(request):
 def payment(request):
     #print()
     if request.method == 'POST':
+        for product in CartProduct.objects.filter(cart = request.user.cart):
+            if product.talla == 'Unico' or product.color == 'Unico':
+                request.session['error'] = {'id':product.ide, 'texto': 'Escoge talla y color'}
+                return redirect('cart')
+
+
         return render(request, 'users/address.html')
     else:
         
