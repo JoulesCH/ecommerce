@@ -1,13 +1,16 @@
 {%extends "base.html"%}
 {%block head%}
-    <title>Producto </title>
+    <title>Dirección </title>
 {%endblock%}
 
 {%block content%}
     <div style ="padding:30px; padding-top:100px;">
         <section>
             <!--Grid row-->
+            <form action="{%url "add_address"%}" method = "POST">
+                {%csrf_token%}
             <div class="row">
+                
         
             <!--Grid column-->
             <div class="col-lg-8 mb-4">
@@ -27,7 +30,7 @@
                         <!-- First name -->
                         <div class="md-form md-outline mb-0 mb-lg-4">
                             <label for="firstName">Nombre</label>
-                            <input type="text" id="firstName" class="form-control mb-0 mb-lg-2" placeholder = "Nombre del destinatario">
+                            <input name = "nombre" required type="text" id="firstName" class="form-control mb-0 mb-lg-2" placeholder = "Nombre del destinatario">
                           
                         </div>
           
@@ -40,7 +43,7 @@
                         <!-- Last name -->
                         <div class="md-form md-outline">
                             <label for="lastName">Apellido</label>
-                            <input type="text" id="lastName" class="form-control" placeholder = "Apellido del destinatario">
+                            <input name = "apellido" required type="text" id="lastName" class="form-control" placeholder = "Apellido del destinatario">
                         </div>
           
                       </div>
@@ -59,7 +62,7 @@
                     <!-- Address Part 2 -->
                     <div class="md-form md-outline">
                         <label for="form15">Dirección</label>
-                        <input type="text" id="form15" placeholder="Calle, número exterior e interior"
+                        <input name = "direccion" required type="text" id="form15" placeholder="Calle, número exterior e interior"
                         class="form-control">
                       
                     </div>
@@ -73,7 +76,7 @@
                         <!--Código Postal -->
                         <div class="md-form md-outline">
                             <label for="form16">Código Postal</label>
-                            <input type="text" id="form16" class="form-control">
+                            <input name = "cp" required type="text" id="form16" class="form-control">
                           </div>
           
                       </div>
@@ -85,7 +88,7 @@
                         <!-- Ciudad estado -->
                         <div class="md-form md-outline">
                             <label for="form17">Ciudad / Estado</label>
-                            <input type="text" id="form17" class="form-control">
+                            <input name = "ciudad" required type="text" id="form17" class="form-control">
                         </div>
           
                       </div>
@@ -103,7 +106,7 @@
                         <!-- Phone -->
                         <div class="md-form md-outline">
                             <label for="form18">Número de teléfono/ Celular</label>
-                            <input type="number" id="form18" class="form-control">
+                            <input name = "numero" required type="number" id="form18" class="form-control">
                           </div>
           
                       </div>
@@ -115,7 +118,7 @@
                          <!-- Email address -->
                          <div class="md-form md-outline">
                             <label for="form19">Correo Electrónico</label>
-                            <input type="email" id="form19" class="form-control">
+                            <input name = "correo" required type="email" id="form19" class="form-control">
                           
                           </div>
           
@@ -128,13 +131,13 @@
                     <!-- Additional information -->
                     <div class="md-form md-outline" style = "padding-top: 10px;">
                         <label for="form76">Información adicional</label>
-                        <textarea id="form76" placeholder="Casa azul, puerta amarilla, etc." class="md-textarea form-control" rows="4"></textarea>
+                        <textarea name = "adicional" required id="form76" placeholder="Casa azul, puerta amarilla, etc." class="md-textarea form-control" rows="4"></textarea>
                     </div>
           
-                    <div class="form-check pl-0 mb-4 mb-lg-0">
-                      <input type="checkbox" class="form-check-input filled-in" id="new3">
-                      <label class="form-check-label small text-uppercase card-link-secondary" for="new3">Recordar datos</label>
-                    </div>
+                    <!-- <div class="form-check pl-0 mb-4 mb-lg-0">
+                      <input name = "recordar" type="checkbox" class="form-check-input filled-in" id="new3">
+                      <label class="form-check-label small card-link-secondary" for="new3">Recordar datos</label>
+                    </div> -->
           
                   </div>
                 </div>
@@ -174,7 +177,7 @@
                         </li>
                         </ul>
                         <div class="d-grid gap-2">
-                            <button type="button" class="btn btn-dark btn-block waves-effect waves-light">Realizar compra</button>
+                            <button type="submit" class="btn btn-dark btn-block waves-effect waves-light">Realizar compra</button>
                         </div>    
                     </div>
                     </div>
@@ -208,7 +211,7 @@
                 </div>
             <!--Grid row-->
             </div>
-        
+        </form>
         </section>
     </div>    <!--Section: Block Content-->
 

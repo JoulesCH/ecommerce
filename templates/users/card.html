@@ -1,0 +1,256 @@
+{%extends "base.html"%}
+{%block head%}
+    <title>Dirección </title>
+{%endblock%}
+
+{%block content%}
+    <div style ="padding:30px; padding-top:100px;">  
+        <!-- Card -->
+        <div class="row">
+            <div class="col">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                            Dirección de envío 
+                            
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            <strong>{{request.user.address.nombre}} {{request.user.address.apellido}}</strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                <div>
+                                    <p>{{request.user.address.direccion}}</p>
+                                    <p>
+                                        <p class="mb-0">{{request.user.address.ciudad}}, {{request.user.address.cp}}</p>
+                                    </p>
+                                    <p>{{request.user.address.numero}}</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="d-grid gap-2" style="padding-left: 1rem">
+                            <span>
+                                <form action="{%url "add_address"%}" method = "POST">
+                                    {%csrf_token%}
+                                    <input type = "hidden" value = "Payment" name = "where">
+                                    <button class="btn btn-outline-dark" type = submit>Editar</button>
+                                </form>
+                            </span>
+                            <!-- <div class="form-check pl-0 mb-4 mb-lg-0" style="padding-bottom: 1rem;">
+                                <input type="checkbox" class="form-check-input filled-in" id="new3">
+                                <span><label class="form-check-label small text-uppercase card-link-secondary" for="new3">Dirección predeterminada</label></span>
+                            </div> -->
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                            
+                                <span></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            
+                            <span></span>
+                            </li>
+                            
+                        </ul>
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-dark btn-block waves-effect waves-light">+ Añade una nueva dirección</button>
+                        </div>    
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <strong>Seleccione tipo de envío</strong>
+                            </li>
+                            <div class="d-grid gap-2" style="padding-left: 1rem">
+                                <div class="form-check pl-0 mb-4 mb-lg-0" style="padding-bottom: 1rem; padding: 1.1rem;">
+                                    <input type="checkbox" class="form-check-input filled-in" id="new3">
+                                    <label class="form-check-label small text-uppercase card-link-secondary" for="new3">Envío estándar (de 5 a 7 días hábiles)</label>
+                                </div>
+                                <div class="form-check pl-0 mb-4 mb-lg-0" style="padding-bottom: 0rem; padding: .4rem;">
+                                    <input type="checkbox" class="form-check-input filled-in" id="new3">
+                                    <label class="form-check-label small text-uppercase card-link-secondary" for="new3">Envío EXPRESS (de 2 a 4 días hábiles)</label>
+                                </div>
+                            </div>
+                        </ul>
+                        <div class="d-grid gap-2">
+                            
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>   
+        <!-- Card -->
+    <div style ="padding:30px; padding-top:0.1rem">
+        <section>
+            <!--Grid row-->
+            <div class="row">
+        
+            <!--Grid column-->
+            <div class="col-lg-8 mb-4">
+        
+                <!-- Card -->
+                <div class="card wish-list pb-1">
+                <div class="card-body">
+        
+                    <h5 class="mb-2">Detalles de pago</h5>
+        
+                    <!-- Grid row -->
+                    <div class="row">
+                        <div class="col">
+                            <span><div class="icons"> <img src="https://img.icons8.com/color/48/000000/visa.png" /> <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /> <img src="https://img.icons8.com/color/48/000000/maestro.png" /></div></span>
+                        </div>
+                    </div>
+                    <!-- Grid row -->
+
+                    <!-- Address Part 1 -->
+                    <div class="md-form md-outline mt-0" style="padding-bottom: 1rem; padding-top: 1rem;">
+                    <input type="number" id="form14" placeholder="" class="form-control">
+                    <label for="form14">Número de la tarjeta</label>
+                    </div>
+        
+                    <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-lg-6" style="padding-bottom: 1rem;">
+
+                <!--Código Postal -->
+                <div class="md-form md-outline">
+                    <input type="number" id="form16" class="form-control" placeholder="Mes">
+                    <label for="form16">Fecha de caducidad</label>
+                    </div>
+
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-lg-6" style="padding-bottom: 1rem;">
+
+                <!-- Ciudad estado -->
+                <div class="md-form md-outline">
+                    <input type="number" id="form17" class="form-control" placeholder="Año">
+                    <label for="form17"></label>
+                </div>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+            <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-lg-6" style="padding-bottom: 1rem;">
+
+                <!-- Phone -->
+                <div class="md-form md-outline">
+                    <input type="number" id="form18" class="form-control" placeholder="CVV/CVC/CID">
+                    <label for="form18">Código de seguridad</label>
+                    </div>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+        
+                    <!-- Additional information -->
+                    <div class="md-form md-outline" style="padding-bottom: 1rem;">
+                        <div class="form-check pl-0 mb-4 mb-lg-0" style="margin: 1.2rem;">
+                            <input type="checkbox" class="form-check-input filled-in" id="new3">
+                            <label class="form-check-label small text-uppercase card-link-secondary" for="new3">Recordar esta tarjeta para su uso posterior</label>
+                        </div>
+                    </div>
+        
+                    
+        
+                </div>
+                </div>
+                <!-- Card -->
+        
+            </div>
+            <!--Grid column-->
+        
+            <!--Grid column-->
+            <div class="col-lg-4">
+                
+                <div class="sticky-top">
+                    <h3 style = "padding-bottom:1.5rem;"> Resumen del pedido </h3>
+                    <!-- Card -->
+                    <div class="card mb-4">
+                    <div class="card-body">
+            
+                        
+            
+                        <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                            Total por artículos
+                            <span>$MXN000.000</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            Costos de envío
+                            <span>Gratis</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                            <div>
+                            <strong>Total de compra </strong>
+                            <strong>
+                                <p class="mb-0">(IVA incluído )</p>
+                            </strong>
+                            </div>
+                            <span><strong>$MXN000.00</strong></span>
+                        </li>
+                        </ul>
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-dark btn-block waves-effect waves-light">Pagar</button>
+                        </div>    
+                    </div>
+                    </div>
+                    <!-- Card -->
+            
+            
+                </div>
+                <!--Grid column-->
+            
+                </div>
+            <!--Grid row-->
+            </div>
+        
+        </section>
+    </div>    <!--Section: Block Content-->
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function () {
+        $('.mdb-select').materialSelect();
+        $('.select-wrapper.md-form.md-outline input.select-dropdown').bind('focus blur', function () {
+        $(this).closest('.select-outline').find('label').toggleClass('active');
+        $(this).closest('.select-outline').find('.caret').toggleClass('active');
+    });
+    });
+    </script>
+{%endblock%}

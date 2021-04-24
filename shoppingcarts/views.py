@@ -3,6 +3,7 @@ from products.models import Product,CartProduct, ProductSpec
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from shoppingcarts.models import Cart
+from users.models import Address
 # Create your views here.
 def cart(request):
     try:
@@ -55,7 +56,12 @@ def payment(request):
             if product.talla == 'Unico' or product.color == 'Unico':
                 request.session['error'] = {'id':product.ide, 'texto': 'Escoge talla y color'}
                 return redirect('cart')
-
+        try:
+            address = Address.objects.get(user = request.user)
+        except:
+            return render(request, 'users/address.html')
+        else:
+            return render(request, 'users/card.html')
 
         return render(request, 'users/address.html')
     else:

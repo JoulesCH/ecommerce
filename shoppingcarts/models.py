@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from users.models import Address
 
 # Create your models here.
 class Cart(models.Model):
@@ -9,3 +10,4 @@ class Cart(models.Model):
     subtotal = models.FloatField(default = 0)
     estado = models.CharField(max_length = 20, default = 'waiting' )
     no_productos = models.IntegerField( default = 0)
+    #address = models.ForeignKey(Address, on_delete = models.CASCADE)

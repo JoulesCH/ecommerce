@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
 from shoppingcarts.models import Cart
+from users.models import Address
 # Create your views here.
 def login_view(request):
     next_url = request.GET.get('next')
@@ -73,4 +74,37 @@ def signup(request):
         return render(request, 'users/signup.html')
     else:
         return redirect('home')
-    
+
+@login_required      
+def add_address(request):
+    if request.method == 'POST':
+        if 'where' in request.POST:
+            return render(request, 'users/address.html')
+        nombre = request.POST['nombre']
+        apellido = request.POST['apellido']
+        direccion = request.POST['direccion']
+        cp  = request.POST['cp']
+        ciudad = request.POST['ciudad']
+        numero = request.POST['numero']
+        correo = request.POST['correo']
+        adicional = request.POST['adicional']
+
+        try: 
+            address = Address.objects.get(user = request.user)
+        except:
+            address = Address(nombre = nombre, apellido = apellido, direccion = direccion, cp = cp, 
+                            ciudad = ciudad, numero = numero, correo = correo, adicional = adicional,
+                            user = request.user, recordar = True)
+            address.save()
+        else:
+            address.nombre = nombre
+            address.apellido = apellido
+            address.direccion = direccion
+            address.cp = cp
+            address.ciudad = ciudad
+            address.numero = numero
+            address.correo = correo
+            address.adicional = adicional
+            address.save()
+
+    return redirect('payment')
