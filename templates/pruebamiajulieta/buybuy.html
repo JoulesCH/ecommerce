@@ -10,33 +10,83 @@
 <body>
     <div style ="padding:0.3rem; padding-top:0rem;">  
         <!-- Card -->
-        <div class="card mb-4">
-            <div class="card-body">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                    Total por artículos
-                        <span>$MXN000.00</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                    Costos de envío
-                    <span>Gratis</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                        <div>
-                            <strong>Total de compra </strong>
-                            <strong>
-                                <p class="mb-0">(IVA incluído )</p>
-                            </strong>
-                        </div>
-                        <span><strong>$MXN000.00</strong></span>
-                    </li>
-                </ul>
-                <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-dark btn-block waves-effect waves-light">Realizar compra</button>
-                </div>    
+        <div class="row">
+            <div class="col">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                            Dirección de envío 
+                            
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            <strong>Julieta Ríos Alvarado</strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                <div>
+                                    <p>Isla San Marcos 4</p>
+                                    <p>
+                                        <p class="mb-0">Colonia Prado Vallejo, Tlanepantla de Baz, Estado de México</p>
+                                    </p>
+                                    <p>54170</p>
+                                </div>
+                                <span><a href="">Editar</a></span>
+                            </li>
+                        </ul>
+                        <div class="d-grid gap-2" style="padding-left: 1rem">
+                            <div class="form-check pl-0 mb-4 mb-lg-0" style="padding-bottom: 1rem;">
+                                <input type="checkbox" class="form-check-input filled-in" id="new3">
+                                <span><label class="form-check-label small text-uppercase card-link-secondary" for="new3">Dirección predeterminada</label></span>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
             </div>
-        </div>
-    </div> 
+            <div class="col">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                             
+                                <span></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            
+                            <span></span>
+                            </li>
+                            
+                        </ul>
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-dark btn-block waves-effect waves-light">+ Añade una nueva dirección</button>
+                        </div>    
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <strong>Seleccione tipo de envío</strong>
+                            </li>
+                            <div class="d-grid gap-2" style="padding-left: 1rem">
+                                <div class="form-check pl-0 mb-4 mb-lg-0" style="padding-bottom: 1rem; padding: 1.1rem;">
+                                    <input type="checkbox" class="form-check-input filled-in" id="new3">
+                                    <label class="form-check-label small text-uppercase card-link-secondary" for="new3">Envío estándar (de 5 a 7 días hábiles)</label>
+                                </div>
+                                <div class="form-check pl-0 mb-4 mb-lg-0" style="padding-bottom: 0rem; padding: .4rem;">
+                                    <input type="checkbox" class="form-check-input filled-in" id="new3">
+                                    <label class="form-check-label small text-uppercase card-link-secondary" for="new3">Envío EXPRESS (de 2 a 4 días hábiles)</label>
+                                </div>
+                            </div>
+                        </ul>
+                        <div class="d-grid gap-2">
+                            
+                        </div>    
+                    </div>
+                </div>
+            </div>
+         </div>
+         
+    </div>   
         <!-- Card -->
     <div style ="padding:0.4rem; padding-top:0.1rem">
         <section>
@@ -50,49 +100,20 @@
                 <div class="card wish-list pb-1">
                 <div class="card-body">
         
-                    <h5 class="mb-2">Detalles para envío</h5>
+                    <h5 class="mb-2">Detalles de pago</h5>
         
                     <!-- Grid row -->
                     <div class="row">
-        
-                    <!-- Grid column -->
-                    <div class="col-lg-6">
-        
-                        <!-- First name -->
-                        <div class="md-form md-outline mb-0 mb-lg-4">
-                        <input type="text" id="firstName" class="form-control mb-0 mb-lg-2">
-                        <label for="firstName">Nombre</label>
+                        <div class="col">
+                            <span><div class="icons"> <img src="https://img.icons8.com/color/48/000000/visa.png" /> <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /> <img src="https://img.icons8.com/color/48/000000/maestro.png" /></div></span>
                         </div>
-        
-                    </div>
-                    <!-- Grid column -->
-        
-                    <!-- Grid column -->
-                    <div class="col-lg-6">
-        
-                        <!-- Last name -->
-                        <div class="md-form md-outline">
-                        <input type="text" id="lastName" class="form-control">
-                        <label for="lastName">Apellido</label>
-                        </div>
-        
-                    </div>
-                    <!-- Grid column -->
-        
                     </div>
                     <!-- Grid row -->
 
                     <!-- Address Part 1 -->
-                    <div class="md-form md-outline mt-0" style="padding-bottom: 1rem;">
-                    <input type="text" id="form14" placeholder="Calle, colonia, número exterior" class="form-control">
-                    <label for="form14">Dirección</label>
-                    </div>
-        
-                    <!-- Address Part 2 -->
-                    <div class="md-form md-outline" style="padding-bottom: 1rem;">
-                    <input type="text" id="form15" placeholder="Número interior etc."
-                        class="form-control">
-                    <label for="form15">Detalles de dirección</label>
+                    <div class="md-form md-outline mt-0" style="padding-bottom: 1rem; padding-top: 1rem;">
+                    <input type="number" id="form14" placeholder="" class="form-control">
+                    <label for="form14">Número de la tarjeta</label>
                     </div>
         
                      <!-- Grid row -->
@@ -103,8 +124,8 @@
     
                   <!--Código Postal -->
                   <div class="md-form md-outline">
-                    <input type="text" id="form16" class="form-control">
-                    <label for="form16">Código Postal</label>
+                    <input type="number" id="form16" class="form-control" placeholder="Mes">
+                    <label for="form16">Fecha de caducidad</label>
                     </div>
     
                 </div>
@@ -115,8 +136,8 @@
     
                   <!-- Ciudad estado -->
                   <div class="md-form md-outline">
-                    <input type="text" id="form17" class="form-control">
-                    <label for="form17">Ciudad / Estado</label>
+                    <input type="number" id="form17" class="form-control" placeholder="Año">
+                    <label for="form17"></label>
                   </div>
     
                 </div>
@@ -133,20 +154,8 @@
     
                   <!-- Phone -->
                   <div class="md-form md-outline">
-                    <input type="number" id="form18" class="form-control">
-                    <label for="form18">Número de teléfono/ Celular</label>
-                    </div>
-    
-                </div>
-                <!-- Grid column -->
-    
-                <!-- Grid column -->
-                <div class="col-lg-6" style="padding-bottom: 1rem;">
-    
-                   <!-- Email address -->
-                   <div class="md-form md-outline">
-                    <input type="email" id="form19" class="form-control">
-                    <label for="form19">Correo Electrónico</label>
+                    <input type="number" id="form18" class="form-control" placeholder="CVV/CVC/CID">
+                    <label for="form18">Código de seguridad</label>
                     </div>
     
                 </div>
@@ -157,14 +166,13 @@
         
                     <!-- Additional information -->
                     <div class="md-form md-outline" style="padding-bottom: 1rem;">
-                    <textarea id="form76" placeholder="Casa azul, puerta amarilla, etc." class="md-textarea form-control" rows="4"></textarea>
-                    <label for="form76">Información adicional</label>
+                        <div class="form-check pl-0 mb-4 mb-lg-0" style="margin: 1.2rem;">
+                            <input type="checkbox" class="form-check-input filled-in" id="new3">
+                            <label class="form-check-label small text-uppercase card-link-secondary" for="new3">Recordar esta tarjeta para su uso posterior</label>
+                        </div>
                     </div>
         
-                    <div class="form-check pl-0 mb-4 mb-lg-0" style="padding-bottom: 1rem;">
-                    <input type="checkbox" class="form-check-input filled-in" id="new3">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="new3">Recordar datos</label>
-                    </div>
+                    
         
                 </div>
                 </div>
@@ -204,33 +212,12 @@
                         </li>
                         </ul>
                         <div class="d-grid gap-2">
-                            <button type="button" class="btn btn-dark btn-block waves-effect waves-light">Realizar compra</button>
+                            <button type="button" class="btn btn-dark btn-block waves-effect waves-light">PAGAR</button>
                         </div>    
                     </div>
                     </div>
                     <!-- Card -->
             
-                    <!-- Card -->
-                    <div class="card mb-4">
-                    <div class="card-body">
-            
-                        <a class="dark-grey-text d-flex justify-content-between link-dark" data-toggle="collapse" href="#collapseExample"
-                        aria-expanded="false" aria-controls="collapseExample">
-                        Añadir descuento (opcional)
-                        <span><i class="fas fa-chevron-down pt-1"></i></span>
-                        </a>
-            
-                        <div class="collapse" id="collapseExample">
-                        <div class="mt-3">
-                            <div class="md-form md-outline mb-0">
-                            <input type="text" id="discount-code" class="form-control font-weight-light"
-                                placeholder="Código de descuento">
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    <!-- Card -->
             
                 </div>
                 <!--Grid column-->
